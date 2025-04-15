@@ -1,0 +1,31 @@
+.form{
+    display: flex;
+    margin:2rem;
+    margin-top: 0px;
+    justify-items: center;
+    padding: 2rem;
+    border-radius: 4px;
+    box-shadow: #FDFAF6 0px 1px 8px 0px;
+    border: none !important;
+}
+.form,.form>div,label,p,input>label,h6,span{
+    background: #EFEFEF !important;
+}
+
+.username{
+    padding-top: 10px;
+}
+.text-center{
+    color: #ffffff;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 3rem;
+    font-weight: 600;
+}
+option{
+    background: #EFEFEF;
+}
+
+.btn-secondary{
+    background: #77B254;
+    border: none;
+}
