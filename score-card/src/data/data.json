@@ -1,0 +1,25 @@
+{
+  "match_result": {
+    "winner": "Chennai Super Kings",
+    "win_by": "5 wickets"
+  },
+  "teams": [
+    {
+      "name": "Lucknow Super Giants",
+      "abbreviation": "LSG",
+      "score": "166/7",
+      "overs": "20",
+      "win": "N",
+      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsm4kowgpb0emkZ-JZJQ-WTWWZs2QMCGbUjA&s"
+    },
+    {
+      "name": "Chennai Super Kings",
+      "abbreviation": "CSK",
+      "score": "168/5",
+      "overs": "19.3",
+      "win": "Y",
+      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeDd0g2liY9StkSQxrrlyE2L_-oMuSH7z3qQ&s"
+    }
+  ],
+  "player_of_the_match": "MS Dhoni"
+}

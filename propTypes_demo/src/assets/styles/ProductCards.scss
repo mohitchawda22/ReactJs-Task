@@ -1,0 +1,20 @@
+*{
+    // max-width: 1280px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.card{
+    width: 220px;
+    height: 220px;
+    box-shadow: #3D90D7 0px 1px 8px 0px;
+    background: #D5E5D5 !important;
+}
+.card:hover{
+    transform: scale(1.02);
+    transition: 0.5s all ease-in-out;
+}
+.row>*{
+    padding-right: 0 !important;
+    padding-left: 0% !important;
+}
