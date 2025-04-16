@@ -1,19 +1,26 @@
 .result{
     color: #ffffff;
-    background:green ;
-    padding: 10px;
+    background:rgb(12, 198, 12) ;
+    padding: 5px;
     border-radius: 4px;
+    font-size: 14px;
+    font-weight: 700;
 }
 
 .match-winner{
-    color: #ffffff;
+    color: #d7caca;
+    font-size: 16px;
 }
 .score-card{
     padding: 10px;
     background: #363838fd;
+    font-size: 14px;
+    border-radius: 4px;
+    box-shadow: #3C3D37 0px 2px 8px 0px;
 }
 
 .pom{
     color: grey;
     text-align: center;
+    font-size: 16px;
 }

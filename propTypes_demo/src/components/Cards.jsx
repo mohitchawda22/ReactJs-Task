@@ -20,11 +20,13 @@ function Cards({Image, Title, Price, Stocks, buyText }) {
 
 Cards.proptypes={
   Image:PropTypes.string,
-  Title:PropTypes.string,
+  Title:PropTypes.number,
   Price:PropTypes.string,
   Stocks:PropTypes.number,
   buyText:PropTypes.string
 }
+
+
 
 
 export default Cards;
