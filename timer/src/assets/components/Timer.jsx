@@ -23,8 +23,8 @@ function Timer() {
     }
 
     useEffect(()=>{
-        let interval=null
         console.log("timer Mounted......");
+        let interval=null
         if(isrunning){
             interval=setInterval(()=>{
                 setTime((prev)=>prev+1)
@@ -34,12 +34,13 @@ function Timer() {
         }
 
         return ()=>{
-            clearInterval(interval,"timer stop...")
+            clearInterval(interval)
+            console.log("timer stop...");
+            
         }
     },[isrunning])
 
   return (
-   <>
     <div className='timer-card'>
         <h1 className='timer'>Timer:</h1>
         <h1 className='time'>{time}</h1>
@@ -47,7 +48,6 @@ function Timer() {
         <button onClick={stop} className='stop btn'>Pause</button>
         <button onClick={reset} className='reset btn mx-3'>Reset</button>
     </div>
-   </>
   )
 }
 
