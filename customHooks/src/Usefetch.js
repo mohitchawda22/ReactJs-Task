@@ -3,25 +3,40 @@ import { useState } from "react"
 
 
 export default function useApi(url,limit){
-    const [data,setData]=useState(null)
-    const [loading,setLoading]=useState(null)
+    const [data,setData]=useState({data:[],loading:false,error:null})
+    // const [loading,setLoading]=useState(null)
+    // console.log(data,"dta");
+    
   
     useEffect(()=>{
       const fetchData=async()=>{
-        setLoading(true)
+        // setLoading(true)
+        setData({...data,loading:true})
         try {
-          const response=await fetch(`${url}/?_limit=${limit}}`)
+          const path=limit? `${url}?_limit=${limit}`: url
+          const response=await fetch(path)
+          console.log(response);
+          
           const result=await response.json()
-          setData(result)
+          const obj = {...data,data:result}
+          setData(obj)
+          console.log(obj,"obj");
+          // console.log(result);
+          // setData({...data,data:result})
         } catch (error) {
           console.log(error,"error");
-          setData([])
-        }finally{
-          setLoading(false)
+          setData({...data,error:error})
+          // setData([])
         }
+        // finally{
+        //   // setLoading(false)
+        //   // setData({...data,loading:false})
+        // }
       }
-      fetchData()
+      if (url){
+        fetchData()
+      }
     },[url,limit])
   
-    return{data,loading}
+    return{data}
   }

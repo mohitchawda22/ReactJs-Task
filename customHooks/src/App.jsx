@@ -1,21 +1,29 @@
-import useApi from './Usefetch';
 import './App.css'
+import ListCard from './components/ListCard'
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
+import useApi from './Usefetch'
 
 
 function App() {
-
-  const { data, loading } = useApi("https://jsonplaceholder.typicode.com/posts", 1000)
-
+  const { data } = useApi("https://jsonplaceholder.typicode.com/posts",10)
+  console.log(data);
+  
   return (
-    <div>
-      {loading && <div>Loading......</div>}
-      <ul>
-        {data && data.map((item ,index)=><li key={index} className=''><strong>{item.title}</strong></li>)}
-      </ul>
-      </div>
+    <>
 
+    <div className='row'>
+      <h1 className=''>Custom Hooks Api Fetch:</h1>
+    {data?.loading && <div className=''>Loading......</div>}
+    {data && data?.data?.map((data,index)=>{
+      return (
+        <div className='col-lg-3'>
+          <ListCard title={data?.title} body={data?.body} key={index}/>
+        </div>
+      )
+    })}
+    </div>
+    </>
   )
 }
 
-
-      export default App
+export default App
