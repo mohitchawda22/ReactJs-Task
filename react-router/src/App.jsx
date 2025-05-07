@@ -6,6 +6,9 @@ import Contact from './pages/Contact/Contact';
 import Home from './pages/Home/Home';
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
 import Product from './pages/Product/Product';
+import Login from './pages/Login/Login';
+import Signin from './pages/Signin/Signin';
+import Protected from './pages/Protected/Protected';
 
 function App() {
 
@@ -28,7 +31,15 @@ function App() {
         },
         {
           path:'/product',
-          element:<Product/>
+          element:<Protected Component={Product}/>
+        },
+        {
+          path:'/login',
+          element:<Login/>
+        },
+        {
+          path:'/signin',
+          element:<Signin/>
         }
       ]
     }

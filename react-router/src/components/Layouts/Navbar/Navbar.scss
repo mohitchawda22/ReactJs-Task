@@ -5,7 +5,27 @@
         }
     }
 }
-
+.navbar-collapse{
+    .nav-btn{
+        li{
+            list-style: none;
+        }
+        .login-btn{
+            color: #FFAD4C;
+            text-decoration: none;
+        }
+        .login-btn:hover{
+            text-decoration: underline;
+        }
+        .signin-btn{
+            color: #fff;
+            background: #FFAD4C;
+            text-decoration: none;
+            padding: 0.5rem;
+            border-radius: 4px;
+        }
+    }
+}
 .navbar-brand{
     margin-right: 0px !important;
 }

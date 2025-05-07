@@ -4,7 +4,6 @@ import hero3 from "../../assets/images/hero3.webp"
 function Contact() {
   return (
     <>
-      {/* Contact Hero Section */}
       <section className="py-5" style={{ backgroundColor: "#FFE4E1" }}>
         <div className="container">
           <div className="row align-items-center">
