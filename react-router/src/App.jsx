@@ -9,16 +9,19 @@ import Product from './pages/Product/Product';
 import Login from './pages/Login/Login';
 import Signin from './pages/Signin/Signin';
 import Protected from './pages/Protected/Protected';
+import ErrorPage from './pages/Error/ErrorPage';
+import Dashboard from './pages/Dashboard/Dashboard';
+import User from './components/Layouts/User/User';
 
 function App() {
 
   const router =createBrowserRouter([
     {
-      path:'/',
+      path:'',
       element:<AppLayout/>,
       children:[
         {
-          path:'/home',
+          path:'/',
           element:<Home/>
         },
         {
@@ -34,14 +37,26 @@ function App() {
           element:<Protected Component={Product}/>
         },
         {
+          path:'/dashboard',
+          element:<Protected Component={Dashboard}/>
+        },
+        {
           path:'/login',
           element:<Login/>
         },
         {
           path:'/signin',
           element:<Signin/>
-        }
+        },
+        {
+          path:'/user/:name',
+          element:<User/>
+        },
       ]
+    },
+    {
+      path:'/*',
+      element:<ErrorPage/>
     }
   ])
 

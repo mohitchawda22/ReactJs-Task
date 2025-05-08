@@ -1,23 +1,18 @@
-import React, { useEffect } from 'react'
-import { NavLink, useNavigate } from 'react-router-dom'
+import React from 'react'
+import { NavLink, useNavigate} from 'react-router-dom'
 import "./Navbar.scss"
 import Logo from "../../../assets/images/Logo.svg"
-import profile from "../../../assets/images/profile.svg"
+// import profile from "../../../assets/images/profile.svg"
 
 function Navbar() {
-    const navigate = useNavigate()
-    const login = localStorage.getItem('login')==="true"
+    const navigate=useNavigate()
+    const login = localStorage.getItem('currentUser') !==null
 
     const Logout = () => {
-        localStorage.removeItem('login')
-        navigate('/home')
+        localStorage.removeItem('currentUser')
+        navigate('/')
     }
-
-    useEffect(() => {
-        if (!login) {
-            navigate('/home')
-        }
-    },[navigate,login])
+    const profileName=JSON.parse(localStorage.getItem('currentUser'))
 
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -31,7 +26,7 @@ function Navbar() {
                 <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
                     <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <NavLink className="nav-link" to={'/home'}>Home</NavLink>
+                            <NavLink className="nav-link" to={'/'}>Home</NavLink>
                         </li>
                         <li className="nav-item">
                             <NavLink className="nav-link" to={'/about'}>About</NavLink>
@@ -52,11 +47,11 @@ function Navbar() {
                                 </>
                             ) : (
                                 <>
-                                    <li><img src={profile} alt="" /></li>
+                                    {/* <li><img src={profile} alt="" /></li> */}
+                                    <li><NavLink className='signin-btn' to={`/user/${profileName?.FirstName}`}>{profileName?.FirstName}</NavLink></li>
                                     <li><NavLink className='signin-btn' onClick={Logout}>Logout</NavLink></li>
                                 </>
                             )}
-
                         </ul>
                     </div>
                 </div>

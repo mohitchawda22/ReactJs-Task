@@ -1,8 +1,34 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import sigin from "../../assets/images/sigin.jpg"
 
 function Signin() {
+    const [userData,setUserData]=useState({FirstName:"",LastName:"",email:"",password:"",confirm_password:""})
+    const navigate=useNavigate()
+
+    const handleChange=(e)=>{
+        setUserData({...userData,[e.target.name]:e.target.value})
+    }
+
+    const handleSubmit=(e)=>{
+        e.preventDefault()
+        const user=JSON.parse(localStorage.getItem('user')) || []
+        const existingUser=user.find(user=>user.email===userData.email)
+        if(existingUser){
+            alert("User already exsist redirecting to login page.......")
+            navigate('/login')
+        }
+        if(userData.password!==userData.confirm_password){
+            alert("password does not match")
+            return
+        }else{
+            const newUser={...userData}
+            user.push(newUser)
+            localStorage.setItem('user',JSON.stringify(user))
+            alert("Register successfully..")
+            navigate('/login')
+        }
+    }
     return (
         <section className="py-5" style={{ backgroundColor: "#FFE4E1" }}>
             <div className="container">
@@ -27,19 +53,19 @@ function Signin() {
                                             <p className="text-muted">Join our community today</p>
                                         </div>
 
-                                        <form>
+                                        <form onSubmit={handleSubmit}>
                                             <div className="row mb-3">
                                                 <div className="col-md-6 mb-3 mb-md-0">
                                                     <label htmlFor="firstName" className="form-label">
                                                         First Name
                                                     </label>
-                                                    <input type="text" className="form-control" id="firstName" placeholder="John" required />
+                                                    <input type="text" name='FirstName' className="form-control" id="firstName" placeholder="John" required onChange={handleChange} />
                                                 </div>
                                                 <div className="col-md-6">
                                                     <label htmlFor="lastName" className="form-label">
                                                         Last Name
                                                     </label>
-                                                    <input type="text" className="form-control" id="lastName" placeholder="Doe" required />
+                                                    <input type="text" name='LastName' className="form-control" id="lastName" placeholder="Doe" required onChange={handleChange}/>
                                                 </div>
                                             </div>
                                             <div className="mb-3">
@@ -52,6 +78,8 @@ function Signin() {
                                                     id="email"
                                                     placeholder="name@example.com"
                                                     required
+                                                    onChange={handleChange}
+                                                    name='email'
                                                 />
                                             </div>
                                             <div className="mb-3">
@@ -64,6 +92,8 @@ function Signin() {
                                                     id="password"
                                                     placeholder="••••••••"
                                                     required
+                                                    onChange={handleChange}
+                                                    name='password'
                                                 />
                                                 <div className="form-text">
                                                     Password must be at least 8 characters with a number and special character.
@@ -79,17 +109,19 @@ function Signin() {
                                                     id="confirmPassword"
                                                     placeholder="••••••••"
                                                     required
+                                                    name='confirm_password'
+                                                    onChange={handleChange}
                                                 />
                                             </div>
                                             <div className="form-check mb-4">
                                                 <input className="form-check-input" type="checkbox" id="termsCheck" required />
                                                 <label className="form-check-label" htmlFor="termsCheck">
                                                     I agree to the{" "}
-                                                    <Link href="/terms" className="text-warning text-decoration-none">
+                                                    <Link to="/terms" className="text-warning text-decoration-none">
                                                         Terms of Service
                                                     </Link>{" "}
                                                     and{" "}
-                                                    <Link href="/privacy" className="text-warning text-decoration-none">
+                                                    <Link to="/privacy" className="text-warning text-decoration-none">
                                                         Privacy Policy
                                                     </Link>
                                                 </label>
@@ -101,7 +133,7 @@ function Signin() {
                                             <div className="text-center mb-4">
                                                 <p className="mb-0">
                                                     Already have an account?{" "}
-                                                    <Link href="/login" className="text-warning text-decoration-none">
+                                                    <Link to="/login" className="text-warning text-decoration-none">
                                                         Sign In
                                                     </Link>
                                                 </p>

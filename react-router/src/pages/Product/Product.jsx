@@ -6,8 +6,18 @@ import wodden from "../../assets/images/wodden.png"
 import bookshelf from "../../assets/images/bookshelf.jpeg"
 import lamp from "../../assets/images/lamp.png"
 import table from "../../assets/images/table.webp"
+import { useSearchParams } from 'react-router-dom'
 
 function Product() {
+  
+  const [searchParams,setSearchParams]=useSearchParams()
+  const category=searchParams.get('category')
+  const price=searchParams.get('price')
+
+  const handleClick=()=>{
+    setSearchParams({category:'electronics',price:'500'})
+  }
+
   return (
     <>
       <section className="py-5" style={{ backgroundColor: "#FFE4E1" }}>
@@ -36,12 +46,11 @@ function Product() {
       <section className="py-5 bg-white">
         <div className="container">
           <div className="row">
-            {/* Sidebar Filters */}
+
             <div className="col-lg-3 mb-4 mb-lg-0">
               <div className="card border-0 shadow-sm p-4">
                 <h4 className="mb-4">Filters</h4>
 
-                {/* Categories */}
                 <div className="mb-4">
                   <h5 className="mb-3">Categories</h5>
                   <div className="form-check mb-2">
@@ -82,7 +91,6 @@ function Product() {
                   </div>
                 </div>
 
-                {/* Price Range */}
                 <div className="mb-4">
                   <h5 className="mb-3">Price Range</h5>
                   <div className="d-flex align-items-center">
@@ -94,7 +102,6 @@ function Product() {
                   </div>
                 </div>
 
-                {/* Colors */}
                 <div className="mb-4">
                   <h5 className="mb-3">Colors</h5>
                   <div className="d-flex flex-wrap gap-2">
@@ -121,7 +128,6 @@ function Product() {
                   </div>
                 </div>
 
-                {/* Materials */}
                 <div className="mb-4">
                   <h5 className="mb-3">Materials</h5>
                   <div className="form-check mb-2">
@@ -150,13 +156,13 @@ function Product() {
                   </div>
                 </div>
 
-                <button className="btn btn-warning text-white w-100">Apply Filters</button>
+                <button className="btn btn-warning text-white w-100" onClick={handleClick}>Apply Filters</button>
               </div>
             </div>
 
-            {/* Product Grid */}
             <div className="col-lg-9">
-              {/* Sort and View Options */}
+              {/* <h3>{category}</h3>
+              <p>{price}</p> */}
               <div className="d-flex justify-content-between align-items-center mb-4">
                 <div>
                   <span className="me-2">Sort by:</span>
@@ -179,9 +185,7 @@ function Product() {
                 </div>
               </div>
 
-              {/* Products */}
               <div className="row">
-                {/* Product 1 */}
                 <div className="col-md-4 mb-4">
                   <div className="card border-0 h-100">
                     <div className="position-relative">
@@ -217,7 +221,6 @@ function Product() {
                   </div>
                 </div>
 
-                {/* Product 2 */}
                 <div className="col-md-4 mb-4">
                   <div className="card border-0 h-100">
                     <div className="position-relative">
@@ -253,7 +256,6 @@ function Product() {
                   </div>
                 </div>
 
-                {/* Product 3 */}
                 <div className="col-md-4 mb-4">
                   <div className="card border-0 h-100">
                     <div className="position-relative">
@@ -289,7 +291,6 @@ function Product() {
                   </div>
                 </div>
 
-                {/* Product 4 */}
                 <div className="col-md-4 mb-4">
                   <div className="card border-0 h-100">
                     <div className="position-relative">
@@ -325,7 +326,6 @@ function Product() {
                   </div>
                 </div>
 
-                {/* Product 5 */}
                 <div className="col-md-4 mb-4">
                   <div className="card border-0 h-100">
                     <div className="position-relative">
@@ -361,7 +361,6 @@ function Product() {
                   </div>
                 </div>
 
-                {/* Product 6 */}
                 <div className="col-md-4 mb-4">
                   <div className="card border-0 h-100">
                     <div className="position-relative">

@@ -1,20 +1,32 @@
-import React, { useEffect } from 'react'
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import login from "../../assets/images/login.jpg"
 
 function Login() {
     const navigate=useNavigate()
-
-    const Login=()=>{
-        localStorage.setItem('login',true)
+    const [userDetail,setUserDetail]=useState({email:"",password:""})
+    
+    const handleSubmit=(e)=>{
+        e.preventDefault()
+        const user=JSON.parse(localStorage.getItem('user')) ||[]
+        const userFound=user.find(user=>user.email===userDetail.email && user.password===userDetail.password)
+        if(userFound){
+            localStorage.setItem("currentUser",JSON.stringify(userFound))
+            alert('logging in....')
+            navigate('/product')
+            return
+        }else{
+            alert("User not found please register yourself!")
+            navigate('/signin')
+        }
+    }
+    const handleEmail=(e)=>{
+        setUserDetail({...userDetail,email:e.target.value})
     }
 
-    useEffect(()=>{
-        const login =localStorage.getItem('login')
-        if(login){
-            navigate('/product')
-        }
-    })
+    const handlepassword=(e)=>{
+        setUserDetail({...userDetail,password:e.target.value})
+    }
 
     return (
         <section className="py-5" style={{ backgroundColor: "#FFE4E1" }}>
@@ -39,7 +51,7 @@ function Login() {
                                             <p className="text-muted">Sign in to your account</p>
                                         </div>
 
-                                        <form>
+                                        <form onSubmit={handleSubmit}>
                                             <div className="mb-3">
                                                 <label htmlFor="email" className="form-label">
                                                     Email Address
@@ -50,6 +62,8 @@ function Login() {
                                                     id="email"
                                                     placeholder="name@example.com"
                                                     required
+                                                    name='email'
+                                                    onChange={handleEmail}
                                                 />
                                             </div>
                                             <div className="mb-3">
@@ -62,6 +76,8 @@ function Login() {
                                                     id="password"
                                                     placeholder="••••••••"
                                                     required
+                                                    name='password'
+                                                    onChange={handlepassword}
                                                 />
                                             </div>
                                             <div className="d-flex justify-content-between mb-4">
@@ -75,14 +91,14 @@ function Login() {
                                                     Forgot password?
                                                 </Link>
                                             </div>
-                                            <button type="submit" onClick={Login} className="btn btn-warning text-white w-100 py-2 mb-4">
+                                            <button type="submit" className="btn btn-warning text-white w-100 py-2 mb-4">
                                                 Sign In
                                             </button>
 
                                             <div className="text-center mb-4">
                                                 <p className="mb-0">
                                                     Don't have an account?{" "}
-                                                    <Link href="/signup" className="text-warning text-decoration-none">
+                                                    <Link to="/signup" className="text-warning text-decoration-none">
                                                         Sign Up
                                                     </Link>
                                                 </p>
