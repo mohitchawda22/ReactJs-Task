@@ -12,13 +12,25 @@ import Protected from './pages/Protected/Protected';
 import ErrorPage from './pages/Error/ErrorPage';
 import Dashboard from './pages/Dashboard/Dashboard';
 import User from './components/Layouts/User/User';
+import Users from './components/Layouts/Users/Users';
 
 function App() {
+
+  const UserList=({params})=>{
+    const id=params.id
+    return {id,message:`hello ,user for ID ${id}`}
+  }
+
+  const dashboardLoader=()=>{
+    const user={name:"mohit",role:"admin"}
+    return user
+  }
 
   const router =createBrowserRouter([
     {
       path:'',
       element:<AppLayout/>,
+      loader:dashboardLoader,
       children:[
         {
           path:'/',
@@ -50,7 +62,12 @@ function App() {
         },
         {
           path:'/user/:name',
-          element:<User/>
+          element:<User/>,
+          loader:UserList
+        },
+        {
+          path:'/users',
+          element:<Users/>
         },
       ]
     },

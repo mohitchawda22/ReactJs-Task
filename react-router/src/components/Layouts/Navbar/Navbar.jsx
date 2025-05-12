@@ -17,7 +17,7 @@ function Navbar() {
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
             <div className="container">
-                <NavLink className="navbar-brand" to={'/home'}>
+                <NavLink className="navbar-brand" to={'/'}>
                     <img src={Logo} alt="" width={150} />
                 </NavLink>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
