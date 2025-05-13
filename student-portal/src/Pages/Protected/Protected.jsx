@@ -5,19 +5,21 @@ function Protected(props) {
     const {Component}=props
     const navigate=useNavigate()
     useEffect(()=>{
-        const isUserLogin=localStorage.getItem("login")
+      const isUserLogin=localStorage.getItem("login") 
         if(!isUserLogin){
             navigate('/login')
         }
         else{
-            alert('user logging in....')
+            // alert('user logging in....')
             navigate('/dashboard')
             return
         }
     },[navigate])
+
+
   return (
     <div>
-      <Component/>
+      {<Component/>}
     </div>
   )
 }

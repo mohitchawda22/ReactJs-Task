@@ -1,11 +1,13 @@
 import './App.css'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { lazy } from 'react';
 import AppLayout from './components/Layouts/AppLayout';
 import About from './pages/About/About';
 import Contact from './pages/Contact/Contact';
 import Home from './pages/Home/Home';
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
-import Product from './pages/Product/Product';
+// import Product from './pages/Product/Product';
+const Product=lazy(()=>import('./pages/Product/Product'))
 import Login from './pages/Login/Login';
 import Signin from './pages/Signin/Signin';
 import Protected from './pages/Protected/Protected';
@@ -13,6 +15,7 @@ import ErrorPage from './pages/Error/ErrorPage';
 import Dashboard from './pages/Dashboard/Dashboard';
 import User from './components/Layouts/User/User';
 import Users from './components/Layouts/Users/Users';
+import { Suspense } from 'react';
 
 function App() {
 
@@ -46,7 +49,11 @@ function App() {
         },
         {
           path:'/product',
-          element:<Protected Component={Product}/>
+          element:(
+            <Suspense fallback={<h3>Loading the Product List......</h3>}>
+              <Protected Component={Product}/>
+            </Suspense>
+          )
         },
         {
           path:'/dashboard',

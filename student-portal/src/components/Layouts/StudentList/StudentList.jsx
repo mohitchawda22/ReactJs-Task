@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from "axios"
-import {Link, useParams} from "react-router-dom"
+// import {Link} from "react-router-dom"
+import StudentCard from '../../StudentCard'
 
 function StudentList() {
     const [StudentList,setStudentList]=useState([])
@@ -17,15 +18,19 @@ function StudentList() {
     useEffect(()=>{
        fetchApi() 
     },[])
-    // console.log(StudentList?.data);
 
-     const params=useParams()
-    const {name}=params
+    // console.log(StudentList?.data);
     
   return (
     <div>
         {StudentList?.data?.map((student) => (
-            <p key={student.id}><Link to={`/Student/${name}`}>{student.name}</Link></p>
+            // <p key={student.id}><Link to={`/Student/${student.id}`}>{student.name}</Link></p>
+            <StudentCard 
+                Name={student.name}
+                Email={student.email}
+                id={student.id}
+                key={student.id}
+            />
         ))}
     </div>
   )
