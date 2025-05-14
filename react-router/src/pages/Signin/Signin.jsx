@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import sigin from "../../assets/images/sigin.jpg"
 
 function Signin() {
@@ -29,6 +29,7 @@ function Signin() {
             navigate('/login')
         }
     }
+    
     return (
         <section className="py-5" style={{ backgroundColor: "#FFE4E1" }}>
             <div className="container">

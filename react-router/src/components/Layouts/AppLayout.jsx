@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import Navbar from "./Navbar/Navbar"
 import Footer from "./Footer/Footer"
 import { Outlet, useLoaderData } from 'react-router-dom'
@@ -9,7 +9,9 @@ function AppLayout() {
   return (
     <>
         <Navbar></Navbar>
-        <Outlet context={user}/>
+        <Suspense>
+          <Outlet context={user}/>
+        </Suspense>
         <NewsletterSection/>
         <Footer></Footer>
     </>
