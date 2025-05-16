@@ -4,7 +4,7 @@ import './index.css'
 import App from './App.jsx'
 import "./components/Store/Store.jsx"
 import { Provider } from 'react-redux'
-import { store } from './components/Store/Store.jsx'
+import  { store } from './components/Store/Store'
 
 
 createRoot(document.getElementById('root')).render(

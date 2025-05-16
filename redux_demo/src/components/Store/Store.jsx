@@ -1,54 +1,72 @@
 /* eslint-disable no-case-declarations */
-import { composeWithDevTools } from "@redux-devtools/extension"
+// import { composeWithDevTools } from "@redux-devtools/extension"
+import { configureStore, createSlice } from "@reduxjs/toolkit"
 
-import {createStore,applyMiddleware} from "redux" 
-import { thunk } from "redux-thunk" //Currently createStore is deprecated but we know this how to use this method and now redux Toolkit is been used
+// import {createStore,applyMiddleware} from "redux" 
+// import { thunk } from "redux-thunk" //Currently createStore is deprecated but we know this how to use this method and now redux Toolkit is been used
 
 const ADD_TASK="task/add"
 const DELETE_TASK="task/delete"
 const FETCH_TASK="task/fetch"
 
-const intialState={
+const initialState={
     task:[]
 }
 
-const taskReducer=(state=intialState,action)=>{
-    switch (action.type) {
-        case ADD_TASK:
-            return{
-                ...state,
-                task:[...state.task,action.payload]
-            }
+// const taskReducer=(state=initialState,action)=>{
+//     switch (action.type) {
+//         case ADD_TASK:
+//             return{
+//                 ...state,
+//                 task:[...state.task,action.payload]
+//             }
 
-        case DELETE_TASK:
-            const updatedTask=state.task.filter((currTask,index)=>{
-              return index !== action.payload  
-            })
-            return{
-                ...state,
-                task:updatedTask,
-            }
-        case FETCH_TASK:
-            return{
-                ...state,
-                task:[...state.task,...action.payload]
-            }
+//         case DELETE_TASK:
+//             const updatedTask=state.task.filter((currTask,index)=>{
+//               return index !== action.payload  
+//             })
+//             return{
+//                 ...state,
+//                 task:updatedTask,
+//             }
+//         case FETCH_TASK:
+//             return{
+//                 ...state,
+//                 task:[...state.task,...action.payload]
+//             }
     
-        default:
-            return state
-    }
+//         default:
+//             return state
+//     }
 
-}
+// }
 
 //Now we Crate a actionCreator which can be used to dispatch the the object with the function call
 
-export const addtask=(data)=>{
-    return {type:ADD_TASK,payload:data}
-}
+// export const addtask=(data)=>{
+//     return {type:ADD_TASK,payload:data}
+// }
 
-export const deleteTask=(id)=>{
-    return {type:DELETE_TASK,payload:id}
-}
+// export const deleteTask=(id)=>{
+//     return {type:DELETE_TASK,payload:id}
+// }
+
+// RTK Slice
+const taskReducer=createSlice({
+    name:"task",
+    initialState,
+    reducers:{
+        addtask(state,action){
+            state.task.push(action.payload)
+        },
+        deleteTask(state,action){
+            state.task=state.task.filter((curTask,index)=>index!== action.payload)
+        }
+    }
+})
+
+export const {addtask,deleteTask}=taskReducer.actions
+
 
 export const fetchData=()=>{
     return async(dispatch)=>{
@@ -63,10 +81,20 @@ export const fetchData=()=>{
     }
 }
 
-
+//! New way of redux and create store 
+export const store=configureStore({
+    reducer:{
+        taskReducer:taskReducer.reducer
+    }
+})
 //This is how we create store with createStore Method 
-export const store=createStore(taskReducer,composeWithDevTools(applyMiddleware(thunk)))
+// export const store=createStore(taskReducer,composeWithDevTools(applyMiddleware(thunk)))
 console.log(store);
+// console.log(store.dispatch(addtask("mango")));
+// console.log(store.dispatch(addtask("mango")));
+// console.log(store.dispatch(deleteTask(1)));
+
+
 
 //This is how we log the current state of the store 
 console.log("InitalState:",store.getState());

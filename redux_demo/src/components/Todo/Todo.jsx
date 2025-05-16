@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import { MdDeleteForever } from 'react-icons/md'
 import { useDispatch, useSelector } from 'react-redux'
-import { addtask, deleteTask, fetchData } from '../Store/Store'
+import { addtask, deleteTask, fetchData } from '../Store/Store.jsx'
 
 function Todo() {
     const [task,setTask]=useState('')
-    const tasks = useSelector((state) => state.task)
+    const tasks = useSelector((state) => state.taskReducer.task)
     console.log("react State:", tasks)
     const dispatch=useDispatch()
 
@@ -39,7 +39,7 @@ function Todo() {
                             <input id="todo-input" type="text" className="form-control" value={task} onChange={(e)=>setTask(e.target.value)}/>
                         </div>
                         <button type="submit" className="btn btn-primary mb-2 ml-2" >Add todo</button>
-                        <button type="submit" className="btn btn-primary mb-2 ml-2" onClick={handleFetch} >Fetch todo</button>
+                        <button type="button" className="btn btn-primary mb-2 ml-2" onClick={handleFetch} >Fetch todo</button>
                     </div>
                     </form>
                     <ul className='d-flex flex-column'>
