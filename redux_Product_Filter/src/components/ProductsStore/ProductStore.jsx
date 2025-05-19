@@ -10,18 +10,16 @@ function ProductStore() {
 
   useEffect(() => {
     dispatch(fetchProducts());
-  }, [dispatch]);
+  }, [filtered]);
 
   return (
     <div className="container my-5">
       <h2 className="text-center fw-bold mb-5">🛍️ Product Showcase</h2>
 
-      {/* Filter Section */}
       <div className="mb-4">
         <Filter />
       </div>
 
-      {/* Product Grid */}
       <div className="row g-4">
         {filtered.length > 0 ? (
           filtered.map((product, index) => (

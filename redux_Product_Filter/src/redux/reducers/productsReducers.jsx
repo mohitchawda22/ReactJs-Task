@@ -1,7 +1,14 @@
 /* eslint-disable no-case-declarations */
 import { FETCH_PRODUCTS, SET_CATEGORY, SET_PRICE, SET_PRODUCTS } from "../contants/actionTypes";
-import { initialState } from "../Store/Store.jsx";
 
+export const initialState = {
+  products: [],
+  filtered: [],
+  categories: [],
+  selectedCategory: "all",
+  priceRange: [0, 1000],
+};
+ 
 
 export const productReducer = (state = initialState, action) => {
   switch (action.type) {
