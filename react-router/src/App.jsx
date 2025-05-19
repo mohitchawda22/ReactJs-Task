@@ -61,7 +61,7 @@ function App() {
           path: 'product',
           element: (
             <ProtectedRoute>
-              <Suspense fallback={<h3 className='text-center'>Loading the Product List......</h3>}>
+              <Suspense >
                 <Product />
               </Suspense>
             </ProtectedRoute>

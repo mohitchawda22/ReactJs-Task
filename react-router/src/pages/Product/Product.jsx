@@ -7,65 +7,71 @@ import { PRODUCT_API } from "../../constants/ProductApi"
 import { CategoryData } from "../../Data/CategoryData"
 
 function Product() {
-  const [data,setData]=useState([])
-  const [searchParams,setSearchParams]=useSearchParams()
+  const [data, setData] = useState([])
+  const [searchParams, setSearchParams] = useSearchParams()
   // const category=searchParams.get('category')
   // const price=searchParams.get('price')
-  const categoryParams=searchParams.getAll("category")
-  const priceParams=searchParams.get("price")||"2000"
+  const categoryParams = searchParams.getAll("category")
+  const priceParams = searchParams.get("price") || "2000"
 
-  const productFetch=async()=>{
+  const productFetch = async () => {
     try {
-      const res=await axios.get(PRODUCT_API)
+      const res = await axios.get(PRODUCT_API)
       setData(res?.data)
     } catch (error) {
       console.log(error.message);
     }
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     productFetch()
-  },[])
+  }, [])
 
-  const handleCategoryChange=(e)=>{
-    const value=e.target.value
-    let newCategory=[...categoryParams]
+  const handleCategoryChange = (e) => {
+    const value = e.target.value
+    let newCategory = [...categoryParams]
 
-    if(categoryParams.includes(value)){
-      newCategory=categoryParams.filter(c=>c!==value)
-    }else{
+    if (categoryParams.includes(value)) {
+      newCategory = categoryParams.filter(c => c !== value)
+    } else {
       newCategory.push(value)
     }
 
-    const params=new URLSearchParams(searchParams)
+    const params = new URLSearchParams(searchParams)
     params.delete("category")
-    newCategory.forEach(cat=>params.append("category",cat))
+    newCategory.forEach(cat => params.append("category", cat))
     setSearchParams(params)
   }
 
-  const handlePriceChange=(e)=>{
-    const value=e.target.value
-    const params=new URLSearchParams(searchParams)
-    params.set("price",value)
+  const handlePriceChange = (e) => {
+    const value = e.target.value
+    const params = new URLSearchParams(searchParams)
+    params.set("price", value)
     setSearchParams(params)
   }
-  
-  const getFilteredData=()=>{
-    let filtered=[...data]
 
-    if(categoryParams.length>0){
-      filtered=filtered.filter(product=>categoryParams.includes(product.category.toLowerCase()))
+  const getFilteredData = () => {
+    let filtered = [...data]
+
+    if (categoryParams.length > 0) {
+      filtered = filtered.filter(product => categoryParams.includes(product.category.toLowerCase()))
     }
-    if(priceParams){
-      filtered=filtered.filter(product=>product.price<=Number(priceParams))
+    if (priceParams) {
+      filtered = filtered.filter(product => product.price <= Number(priceParams))
     }
     return filtered
   }
   console.log(data)
 
-  const filteredData=getFilteredData()
+  const filteredData = getFilteredData()
 
-  if (!data) return <div className="text-center py-5">Loading Products.......</div>
+  if (!data) return (
+    <div className="d-flex justify-content-center py-5">
+      <div className="spinner-border text-primary" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  )
   return (
     <>
       <section className="py-5" style={{ backgroundColor: "#FFE4E1" }}>
@@ -101,20 +107,20 @@ function Product() {
 
                 <div className="mb-4">
                   <h5 className="mb-3">Categories</h5>
-                  {CategoryData.map((category,index)=>(
+                  {CategoryData.map((category, index) => (
                     <div className="form-check mb-2" key={index}>
-                    <input className="form-check-input" type="checkbox" id={category} value={category} checked={categoryParams.includes(category)} onChange={handleCategoryChange}/>
-                    <label className="form-check-label" htmlFor={category}>
-                      {category.charAt(0).toUpperCase()+category.slice(1)}
-                    </label>
-                  </div>
+                      <input className="form-check-input" type="checkbox" id={category} value={category} checked={categoryParams.includes(category)} onChange={handleCategoryChange} />
+                      <label className="form-check-label" htmlFor={category}>
+                        {category.charAt(0).toUpperCase() + category.slice(1)}
+                      </label>
+                    </div>
                   ))}
                 </div>
 
                 <div className="mb-4">
                   <h5 className="mb-3">Price Range</h5>
                   <div className="d-flex align-items-center">
-                    <input type="range" className="form-range" min="0" max="2000" id="priceRange" value={priceParams} onChange={handlePriceChange}/>
+                    <input type="range" className="form-range" min="0" max="2000" id="priceRange" value={priceParams} onChange={handlePriceChange} />
                   </div>
                   <div className="d-flex justify-content-between mt-2">
                     <span>$0</span>
@@ -126,16 +132,16 @@ function Product() {
 
             <div className="col-lg-9">
               <div className="row">
-                {filteredData?.map((product,index)=>(
-                <ProductCard 
-                  key={index}
-                  Image={product?.image}
-                  category={product?.category}
-                  Price={product?.price}
-                  Title={product?.title}
-                  Rating={product?.rating?.rate}
-                  Count={product?.rating.count}
-                />
+                {filteredData?.map((product, index) => (
+                  <ProductCard
+                    key={index}
+                    Image={product?.image}
+                    category={product?.category}
+                    Price={product?.price}
+                    Title={product?.title}
+                    Rating={product?.rating?.rate}
+                    Count={product?.rating.count}
+                  />
                 ))}
               </div>
             </div>

@@ -1,5 +1,8 @@
-function ProductCard({ product }) {
+import { Link } from "react-router-dom";
+
+function ProductCard({ product}) {
   return (
+    <Link className="text-decoration-none" to={`/product/${product.id}`}>
     <div className="card h-100 shadow-sm border-0">
       {product.image && (
         <img
@@ -18,6 +21,7 @@ function ProductCard({ product }) {
         <p className="fw-bold text-success mb-0">${product.price}</p>
       </div>
     </div>
+    </Link>
   );
 }
 

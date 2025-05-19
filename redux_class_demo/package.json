@@ -1,5 +1,5 @@
 {
-  "name": "redux-product-filter",
+  "name": "redux_class_demo",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -12,14 +12,14 @@
   "dependencies": {
     "@redux-devtools/extension": "^3.3.0",
     "@reduxjs/toolkit": "^2.8.2",
-    "axios": "^1.9.0",
     "bootstrap": "^5.3.6",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-react": "^1.19.5",
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.6.0",
     "redux": "^5.0.1",
-    "redux-product-filter": "file:",
+    "redux_class_demo": "file:",
     "redux-thunk": "^3.1.0"
   },
   "devDependencies": {

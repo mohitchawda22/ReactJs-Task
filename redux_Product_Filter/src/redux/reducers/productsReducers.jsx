@@ -1,5 +1,5 @@
 /* eslint-disable no-case-declarations */
-import { FETCH_PRODUCTS, SET_CATEGORY, SET_PRICE, SET_PRODUCTS } from "../contants/actionTypes";
+import { FETCH_PRODUCTS, FETCH_PRODUCTS_BY_ID, SET_CATEGORY, SET_LOADING, SET_PRICE, SET_PRODUCTS } from "../contants/actionTypes";
 
 export const initialState = {
   products: [],
@@ -7,6 +7,8 @@ export const initialState = {
   categories: [],
   selectedCategory: "all",
   priceRange: [0, 1000],
+  loading:false,
+  selectedProduct:null
 };
  
 
@@ -50,7 +52,18 @@ export const productReducer = (state = initialState, action) => {
         filtered: action.payload,
         categories: ["all", ...new Set(action.payload.map(p => p.category))],
       };
+    
+    case SET_LOADING:
+      return{
+        ...state,
+        loading:action.payload,
+      }
 
+    case FETCH_PRODUCTS_BY_ID:
+      return {
+        ...state,
+        selectedProduct:action.payload
+      }
     default:
       return state;
   }

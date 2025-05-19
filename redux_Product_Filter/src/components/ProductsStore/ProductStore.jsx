@@ -6,11 +6,12 @@ import Filter from '../Filter/Filter';
 
 function ProductStore() {
   const dispatch = useDispatch();
-  const { filtered } = useSelector(state => state.productReducer);
+  const { filtered=[],loading } = useSelector(state => state.productReducer);
+
 
   useEffect(() => {
     dispatch(fetchProducts());
-  }, [filtered]);
+  }, [dispatch]);
 
   return (
     <div className="container my-5">
@@ -20,21 +21,28 @@ function ProductStore() {
         <Filter />
       </div>
 
-      <div className="row g-4">
-        {filtered.length > 0 ? (
-          filtered.map((product, index) => (
+      {loading ? (
+        <div className="d-flex justify-content-center py-5">
+          <div className="spinner-border text-primary" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      ) : filtered.length === 0 ? (
+        <div className="text-center py-5">
+          <h5>No products found.</h5>
+        </div>
+      ) : (
+        <div className="row g-4">
+          {filtered.map((product, index) => (
             <div className="col-sm-6 col-md-4 col-lg-3" key={index}>
               <ProductCard product={product} />
             </div>
-          ))
-        ) : (
-          <div className="text-center py-5">
-            <h5>No products found.</h5>
-          </div>
-        )}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
-  );
+  )
 }
+
 
 export default ProductStore;
