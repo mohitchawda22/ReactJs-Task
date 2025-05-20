@@ -6,14 +6,14 @@ import { fetchProductById } from '../../redux/actions/products';
 function ProductDetail() {
 
   const dispatch = useDispatch()
-  const { id } = useParams()
-  console.log(id);
+  const { productId } = useParams()
+  // console.log(id);
 
   const { selectedProduct, loading } = useSelector(state => state.productReducer)
 
   useEffect(() => {
-    dispatch(fetchProductById(id))
-  }, [dispatch, id])
+    dispatch(fetchProductById(productId))
+  }, [dispatch, productId])
 
   if (loading) return (
      <div className="d-flex justify-content-center py-5 my-5">

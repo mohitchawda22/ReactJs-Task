@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
+import ThemeSwitcher from '../ThemeSwitcher/ThemeSwitcher'
+import { ThemeContext } from '../../context/ThemeProvider'
 
 function Navbar() {
+  const {theme}=useContext(ThemeContext)
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
-            <div className="container">
+    <nav className={`navbar navbar-expand-lg ${theme==="dark" ?"navbar-dark bg-dark" :"navbar-light bg-light"}`}>
+            <div className="container"> 
                 <NavLink className="navbar-brand" to={'/'}>
                     Store
                 </NavLink>
@@ -20,6 +23,11 @@ function Navbar() {
                             <NavLink className="nav-link" to={'/products'}>Products</NavLink>
                         </li>
                     </ul>
+                    <div className='d-flex justify-content-between nav-btn'>
+                        <ul className='d-flex my-auto gap-4'>
+                            <ThemeSwitcher/>
+                        </ul>
+                        </div>
                 </div>
             </div>
         </nav>

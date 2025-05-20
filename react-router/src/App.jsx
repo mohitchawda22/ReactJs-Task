@@ -3,6 +3,7 @@ import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom"
 import { lazy } from 'react';
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
 import { Suspense } from 'react';
+import ThemeProvider from './context/ThemeProvider';
 const AppLayout = lazy(() => import("./components/Layouts/AppLayout"))
 const About = lazy(() => import("./pages/About/About"))
 const Contact = lazy(() => import("./pages/Contact/Contact"))
@@ -14,6 +15,7 @@ const Dashboard = lazy(() => import("./pages/Dashboard/Dashboard"))
 const Login = lazy(() => import("./pages/Login/Login"))
 const User = lazy(() => import("./components/Layouts/User/User"))
 const Users = lazy(() => import("./components/Layouts/Users/Users"))
+const ProductDetail = lazy(() => import("./components/Layouts/ProductDetail/ProductDetail"))
 
 function App() {
 
@@ -58,13 +60,21 @@ function App() {
           element: <Contact />
         },
         {
-          path: 'product',
+          path: '/product',
           element: (
             <ProtectedRoute>
               <Suspense >
                 <Product />
               </Suspense>
             </ProtectedRoute>
+          )
+        },
+        {
+          path: "/product/:productId",
+          element: (
+            <Suspense>
+              <ProductDetail />
+            </Suspense>
           )
         },
         {
@@ -105,7 +115,15 @@ function App() {
           <ErrorPage />
         </Suspense>
       )
-    }, 
+    },
+    // {
+    //   path: '/cart',
+    //   element: (
+    //     <Suspense>
+    //       <Cart />
+    //     </Suspense>
+    //   )
+    // },
     {
       path: '/dashboard',
       element: (
@@ -120,7 +138,9 @@ function App() {
 
   return (
     <>
-      <RouterProvider router={router}></RouterProvider>
+      <ThemeProvider>
+        <RouterProvider router={router}></RouterProvider>
+      </ThemeProvider>
     </>
   )
 }

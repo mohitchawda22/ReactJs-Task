@@ -1,16 +1,16 @@
-import hero4 from "../../assets/images/hero4.webp"
 import axios from "axios"
 import { useSearchParams } from 'react-router-dom'
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import ProductCard from "../../components/Layouts/ProductCard/ProductCard"
 import { PRODUCT_API } from "../../constants/ProductApi"
 import { CategoryData } from "../../Data/CategoryData"
+import { ThemeContext } from "../../context/ThemeProvider"
 
 function Product() {
+  const {theme}=useContext(ThemeContext)
+  
   const [data, setData] = useState([])
   const [searchParams, setSearchParams] = useSearchParams()
-  // const category=searchParams.get('category')
-  // const price=searchParams.get('price')
   const categoryParams = searchParams.getAll("category")
   const priceParams = searchParams.get("price") || "2000"
 
@@ -26,6 +26,10 @@ function Product() {
   useEffect(() => {
     productFetch()
   }, [])
+  useEffect(() => {
+    console.log(theme);
+
+  }, [theme])
 
   const handleCategoryChange = (e) => {
     const value = e.target.value
@@ -65,7 +69,7 @@ function Product() {
 
   const filteredData = getFilteredData()
 
-  if (!data) return (
+  if (data.length===0) return (
     <div className="d-flex justify-content-center py-5">
       <div className="spinner-border text-primary" role="status">
         <span className="visually-hidden">Loading...</span>
@@ -74,29 +78,6 @@ function Product() {
   )
   return (
     <>
-      <section className="py-5" style={{ backgroundColor: "#FFE4E1" }}>
-        <div className="container">
-          <div className="row align-items-center">
-            <div className="col-md-6">
-              <h1 className="fw-bold text-warning">Our Products</h1>
-              <p className="text-muted my-4">
-                Discover our collection of beautifully crafted furniture designed to transform your living spaces. From
-                sofas to dining tables, each piece is made with quality materials and expert craftsmanship.
-              </p>
-            </div>
-            <div className="col-md-6">
-              <img
-                src={hero4}
-                width={500}
-                height={400}
-                alt="Product showcase"
-                className="img-fluid rounded"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section className="py-5 bg-white">
         <div className="container">
           <div className="row">
@@ -141,6 +122,7 @@ function Product() {
                     Title={product?.title}
                     Rating={product?.rating?.rate}
                     Count={product?.rating.count}
+                    id={product?.id}
                   />
                 ))}
               </div>

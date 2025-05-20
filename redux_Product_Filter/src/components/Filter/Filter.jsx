@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCategory, setPrice } from '../../redux/actions/products';
+import { ThemeContext } from '../../context/ThemeProvider';
 
 function Filter() {
     const dispatch = useDispatch();
     const { categories, selectedCategory, priceRange } = useSelector(
         (state) => state.productReducer
     );
+    const {theme}=useContext(ThemeContext)
 
     return (
-        <div className="filter-box bg-white shadow-sm p-4 rounded mb-4">
+        <div className={`filter-box shadow-sm p-4 rounded mb-4 ${theme==="dark"?"dark":"light"}`}>
             <div className="row gy-3 align-items-center">
                 <div className="col-md-6 col-lg-4">
                     <label className="fw-bold mb-1">Filter by Category</label>

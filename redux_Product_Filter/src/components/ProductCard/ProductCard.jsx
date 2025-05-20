@@ -1,9 +1,12 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { ThemeContext } from "../../context/ThemeProvider";
 
 function ProductCard({ product}) {
+  const {theme}=useContext(ThemeContext)
   return (
     <Link className="text-decoration-none" to={`/product/${product.id}`}>
-    <div className="card h-100 shadow-sm border-0">
+    <div className={`card h-100 shadow-sm border-0 ${theme==="dark"?"dark":"light"}`}>
       {product.image && (
         <img
           src={product.image}

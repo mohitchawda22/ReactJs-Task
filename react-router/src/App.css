@@ -1,1 +1,40 @@
+body.light {
+  background-color: #ffffff;
+  color: #000000;
+}
 
+body.dark {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.navbar {
+  transition: background-color 0.3s, color 0.3s;
+}
+body.light .navbar {
+  background-color: #f8f9fa;
+  color: #000;
+}
+
+body.dark .navbar {
+  background-color: #333;
+  color: #fff;
+}
+
+.card {
+  transition: background-color 0.3s, color 0.3s;
+}
+body.dark .card {
+  background-color: #2b2b2b;
+  color: #ffffff;
+}
+
+body.dark .container {
+  background-color: #1e1e1e;
+  color: #fff;
+}
+
+body.dark .btn {
+  border-color: #fff;
+  color: #fff;
+}
