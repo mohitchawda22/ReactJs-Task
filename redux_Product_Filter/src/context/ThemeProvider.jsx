@@ -20,7 +20,7 @@ function ThemeProvider({ children }) {
     return (
         <>
             <ThemeContext.Provider value={{ theme, toggleTheme }}>
-                <div className={theme === "light" ? "light" : "dark"}>
+                <div className={`min-vh-100 ${theme === "light" ? "light" : "dark"}`}>
                     {children}
                 </div>
             </ThemeContext.Provider>

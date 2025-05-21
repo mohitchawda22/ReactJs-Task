@@ -6,7 +6,11 @@ import Filter from '../Filter/Filter';
 
 function ProductStore() {
   const dispatch = useDispatch();
-  const { filtered=[],loading } = useSelector(state => state.productReducer);
+  const productState = useSelector(state => state.product);
+  console.log("productState", productState);
+  const { filtered = [], loading } = useSelector(state => state.product);
+
+
 
 
   useEffect(() => {

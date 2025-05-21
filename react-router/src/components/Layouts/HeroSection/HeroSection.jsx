@@ -8,7 +8,7 @@ function HeroSection() {
     navigate('/product')
   }
   return (
-    <section className="py-5" style={{ backgroundColor: "#FFE4E1" }}>
+    <section className={`py-5 `} style={{ backgroundColor: "#FFE4E1" }}>
         <div className="container">
           <div className="row align-items-center">
             <div className="col-md-6">

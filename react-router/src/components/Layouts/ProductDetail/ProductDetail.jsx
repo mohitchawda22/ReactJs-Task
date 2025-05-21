@@ -74,7 +74,7 @@ function ProductDetail() {
           </p>
 
           <button className="btn btn-warning btn-lg px-4 mt-3">
-            <i className="bi bi-cart-plus me-2"></i>Add to Cart
+            Add to Cart
           </button>
         </div>
       </div>

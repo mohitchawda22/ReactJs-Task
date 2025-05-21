@@ -78,7 +78,7 @@ function Product() {
   )
   return (
     <>
-      <section className="py-5 bg-white">
+      <section className={`py-5 ${theme==="light"?"light":"dark"}`}>
         <div className="container">
           <div className="row">
 

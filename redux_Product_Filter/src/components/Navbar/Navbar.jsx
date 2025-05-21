@@ -1,13 +1,27 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import ThemeSwitcher from '../ThemeSwitcher/ThemeSwitcher'
 import { ThemeContext } from '../../context/ThemeProvider'
+import { useSelector } from 'react-redux'
+import MiniCart from '../MiniCart/MiniCart'
 
 function Navbar() {
-  const {theme}=useContext(ThemeContext)
-  return (
-    <nav className={`navbar navbar-expand-lg ${theme==="dark" ?"navbar-dark bg-dark" :"navbar-light bg-light"}`}>
-            <div className="container"> 
+    const { theme } = useContext(ThemeContext)
+    const cartItem=useSelector(state=>state.cart.items)
+    const cartCount=cartItem.length
+    // const cartCount = useSelector((state) =>
+    //     state.cart?.items?.reduce((sum, item) => sum + item.quantity, 0) ?? 0
+    // )
+    const [showMiniCart, setShowMiniCart] = useState(false)
+
+    // const navigate = useNavigate()
+
+    // const NavigateTocart = () => {
+    //     navigate("/cart")
+    // }
+    return (
+        <nav className={`navbar navbar-expand-lg ${theme === "dark" ? "navbar-dark bg-dark" : "navbar-light bg-light"}`}>
+            <div className="container">
                 <NavLink className="navbar-brand" to={'/'}>
                     Store
                 </NavLink>
@@ -23,15 +37,30 @@ function Navbar() {
                             <NavLink className="nav-link" to={'/products'}>Products</NavLink>
                         </li>
                     </ul>
-                    <div className='d-flex justify-content-between nav-btn'>
+                    <div className="d-flex align-items-center position-relative" onMouseEnter={() => setShowMiniCart(true)} onMouseLeave={() => setShowMiniCart(false)}>
+                        <button className="btn position-relative">
+                           <i className={`bi bi-bag ${theme==="dark"?"text-white":"text-black"}`}/>
+                            {cartCount > 0 && (
+                                <span className="badge bg-danger position-absolute top-0 start-100 translate-middle">
+                                    {cartCount}
+                                </span>
+                            )}
+                        </button>
+                        <div className='me-4 '>
+                            {showMiniCart && <MiniCart onClose={() => setShowMiniCart(false)} />}
+                        </div>
+                    </div>
+                    <ThemeSwitcher />
+                    {/* <div className='d-flex justify-content-between nav-btn'>
                         <ul className='d-flex my-auto gap-4'>
+                            <span>{cartCount}</span>
                             <ThemeSwitcher/>
                         </ul>
-                        </div>
+                        </div> */}
                 </div>
             </div>
         </nav>
-  )
+    )
 }
 
 export default Navbar

@@ -11,3 +11,13 @@
 .light,.dark{
     transition: background 0.3s ease, color 0.3s ease;
 }
+
+.card-dark-bg{
+    background: #393E46;
+    color: white;
+}
+
+.card-light-bg{
+    background: white;
+    color:black
+}

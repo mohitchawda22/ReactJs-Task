@@ -6,7 +6,7 @@ import { ThemeContext } from '../../context/ThemeProvider';
 function Filter() {
     const dispatch = useDispatch();
     const { categories, selectedCategory, priceRange } = useSelector(
-        (state) => state.productReducer
+        (state) => state.product
     );
     const {theme}=useContext(ThemeContext)
 

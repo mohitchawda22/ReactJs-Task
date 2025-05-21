@@ -1,9 +1,9 @@
-body.light {
+.light {
   background-color: #ffffff;
   color: #000000;
 }
 
-body.dark {
+.dark {
   background-color: #121212;
   color: #ffffff;
 }
@@ -11,12 +11,12 @@ body.dark {
 .navbar {
   transition: background-color 0.3s, color 0.3s;
 }
-body.light .navbar {
+.light .navbar {
   background-color: #f8f9fa;
   color: #000;
 }
 
-body.dark .navbar {
+.dark .navbar {
   background-color: #333;
   color: #fff;
 }
@@ -24,17 +24,17 @@ body.dark .navbar {
 .card {
   transition: background-color 0.3s, color 0.3s;
 }
-body.dark .card {
+.dark .card {
   background-color: #2b2b2b;
   color: #ffffff;
 }
 
-body.dark .container {
+.dark .container {
   background-color: #1e1e1e;
   color: #fff;
 }
 
-body.dark .btn {
+.dark .btn {
   border-color: #fff;
   color: #fff;
 }

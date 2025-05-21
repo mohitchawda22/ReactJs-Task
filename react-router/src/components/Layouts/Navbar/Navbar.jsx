@@ -19,7 +19,7 @@ function Navbar() {
 
 
     return (
-        <nav className="navbar navbar-expand-lg bg-body-tertiary">
+        <nav className={`navbar navbar-expand-lg`}>
             <div className="container">
                 <NavLink className="navbar-brand" to={'/'}>
                     <img src={Logo} alt="" width={150} />
@@ -59,10 +59,8 @@ function Navbar() {
                                            <li className='mt-3'><NavLink className='signin-btn' onClick={Logout}>Logout</NavLink></li>
                                         </ul>
                                            <li className='my-2'><MiniCart/></li>
-                                        <ThemeSwitcher/>
+                                        {/* <ThemeSwitcher/> */}
                                     </div>
-                                    {/* <li><NavLink className='signin-btn' to={`/user/${profileName?.FirstName}`}>{profileName?.FirstName}</NavLink></li> */}
-                                    {/* <li><NavLink className='signin-btn' onClick={Logout}>Logout</NavLink></li> */}
                                 </>
                             )}
                         </ul>
