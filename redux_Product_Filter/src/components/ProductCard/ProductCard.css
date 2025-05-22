@@ -1,0 +1,47 @@
+/* ProductCard.css */
+
+.product-card {
+  transition: box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.cart-overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cart-overlay.show {
+  opacity: 1;
+}
+
+.transition-scale {
+  transition: transform 0.3s ease-in-out;
+  object-fit: cover;
+}
+
+.wishlist-icon {
+  background-color: #fff;
+  color: #dc3545;
+  border: none;
+  font-size: 1.1rem;
+  z-index: 10;
+  transition: transform 0.2s ease;
+}
+
+.wishlist-icon:hover {
+  transform: scale(1.1);
+}
+
+/* Disable hover effect on mobile */
+@media (hover: none) {
+  .product-card:hover {
+    box-shadow: none;
+  }
+  .cart-overlay {
+    opacity: 1 !important;
+  }
+}
