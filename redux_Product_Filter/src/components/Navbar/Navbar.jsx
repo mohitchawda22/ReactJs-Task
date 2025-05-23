@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
+import { NavLink} from 'react-router-dom';
 import { ThemeContext } from '../../context/ThemeProvider';
 import { useSelector } from 'react-redux';
 import MiniCart from '../MiniCart/MiniCart';
@@ -12,6 +13,8 @@ function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showMiniCart, setShowMiniCart] = useState(false);
+
+
 
   useEffect(() => {
     const handleScroll = () => {

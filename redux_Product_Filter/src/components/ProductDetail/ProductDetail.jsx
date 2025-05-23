@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { fetchProductById } from '../../redux/actions/products';
 import { addToCart } from '../../redux/actions/cartAction';
 import { ThemeContext } from '../../context/ThemeProvider';
+import { toast } from 'react-toastify';
 
 function ProductDetail() {
   const { theme } = useContext(ThemeContext);
@@ -17,6 +18,7 @@ function ProductDetail() {
   }, [dispatch, productId]);
 
   const handleAddToCart = () => {
+    toast.success("Item added to Cart")
     dispatch(addToCart(selectedProduct));
   };
 

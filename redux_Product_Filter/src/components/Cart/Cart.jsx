@@ -41,6 +41,9 @@ function Cart() {
   const handleNavigate = () => {
     navigate("/checkout");
   };
+  const handleNavigateStore=()=>{
+    navigate("/products")
+  }
 
   return (
     <div className="container my-5">
@@ -51,7 +54,7 @@ function Cart() {
           {items.length === 0 ? (
             <div className="alert alert-info text-center">
               Your cart is empty. <br />
-              <button className="btn btn-primary mt-2">Continue Shopping</button>
+              <button className="btn btn-primary mt-2" onClick={handleNavigateStore}>Continue Shopping</button>
             </div>
           ) : (
             <>

@@ -1,29 +1,7 @@
-import './App.css'
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
-import { createBrowserRouter, RouterProvider } from "react-router-dom"
-import Applayout from './components/AppLayout/Applayout'
-import { lazy, Suspense } from 'react'
-const Home = lazy(() => import("./pages/Home"))
-const ProductDetail = lazy(() => import("./components/ProductDetail/ProductDetail"))
-const ProductStore = lazy(() => import('./components/ProductsStore/ProductStore'))
-const Cart = lazy(() => import("./components/Cart/Cart"))
-const About = lazy(() => import("./pages/About"))
-const Contact = lazy(() => import("./pages/Contact"))
-const Login = lazy(() => import("./pages/Login"))
-const Register = lazy(() => import("./pages/Register"))
-const Checkout=lazy(()=>import("./pages/Checkout"))
-const OrderSummary=lazy(()=>import("./pages/OrderSummary"))
-import ThemeProvider from './context/ThemeProvider'
-import ProtectedRoute from './Routes/ProtectedRoute'
-import Loader from './components/ui/loader'
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-// import { Routes } from './Routes/Routes'
+import { createBrowserRouter } from 'react-router-dom'
 
-
-function App() {
-  // const {router}=Routes()
-  const router = createBrowserRouter([
+export const Routes=()=> {
+    const router = createBrowserRouter([
     {
       path: "",
       element: <Applayout />,
@@ -117,14 +95,8 @@ function App() {
       ]
     }
   ])
-  return (
-    <>
-      <ThemeProvider>
-        <RouterProvider router={router}></RouterProvider>
-        <ToastContainer position="top-right" autoClose={3000}></ToastContainer>
-      </ThemeProvider>
-    </>
-  )
+  return {
+    router
+  }
 }
 
-export default App

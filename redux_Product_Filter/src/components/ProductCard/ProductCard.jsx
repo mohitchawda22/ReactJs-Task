@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart, decreaseQuantity, increaseQuantity } from "../../redux/actions/cartAction";
 import { useState } from "react";
 import "./ProductCard.css"; // Create this for extra styling
+import { toast } from "react-toastify";
 
 function ProductCard({ product }) {
   const dispatch = useDispatch();
@@ -13,11 +14,13 @@ function ProductCard({ product }) {
 
   const AddToCart = (e) => {
     e.preventDefault();
+    toast.success("Item added in cart")
     dispatch(addToCart(product));
   };
 
   const DecrementQuantity = (e, id) => {
     e.preventDefault();
+    toast.info("Item removed!")
     dispatch(decreaseQuantity(id));
   };
 

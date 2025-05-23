@@ -1,61 +1,8 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useRigester } from './useRigester';
 
 function Register() {
-  const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-  });
-
-  const navigate = useNavigate();
-
-  const handleRegister = (e) => {
-    e.preventDefault();
-
-    const existingUser = JSON.parse(localStorage.getItem('users')) ||[];
-    const userExsists=existingUser.find(user=>user.email===formData.email)
-
-    if (userExsists) {
-      alert('User already exists. Redirecting to Login page...');
-      navigate('/login');
-      return;
-    }
-
-    if (
-      !formData.fullName ||
-      !formData.email ||
-      !formData.password ||
-      !formData.confirmPassword
-    ) {
-      alert('Please fill all the fields!');
-      return;
-    }
-
-    if (formData.password !== formData.confirmPassword) {
-      alert('Passwords do not match!');
-      return;
-    }
-
-    existingUser.push({
-      fullName: formData.fullName,
-      email: formData.email,
-      password: formData.password,
-    });
-
-    localStorage.setItem('users', JSON.stringify(existingUser));
-    alert('Registration successful! Please login.');
-    navigate('/login');
-  };
-
-  const handleChange = (e) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
+  const {handleChange,handleRegister,formData}=useRigester()
   return (
     <div className="container my-5">
       <div className="row justify-content-center">

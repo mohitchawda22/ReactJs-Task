@@ -1,6 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom'
 
-
 function TopBanner() {
     const navigate = useNavigate()
     const Islogin = localStorage.getItem("Islogin") === true
@@ -60,7 +59,7 @@ function TopBanner() {
                                 </Link>
                             </li>
                             <li>
-                                <Link to="/account/orders" className="dropdown-item">
+                                <Link to="/order-summary" className="dropdown-item">
                                     My Orders
                                 </Link>
                             </li>

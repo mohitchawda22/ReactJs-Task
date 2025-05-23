@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { clearCart, decreaseQuantity, increaseQuantity } from '../../redux/actions/cartAction'
 import { ThemeContext } from '../../context/ThemeProvider'
+import { toast } from 'react-toastify'
 
 function MiniCart({onClose}) {
 
@@ -23,6 +24,7 @@ function MiniCart({onClose}) {
         dispatch(increaseQuantity(id))
     }
     const ClearAll=()=>{
+        toast.error("Cart empty!")
         dispatch(clearCart())
     }
   return (

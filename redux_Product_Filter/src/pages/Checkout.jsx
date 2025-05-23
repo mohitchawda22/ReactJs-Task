@@ -1,5 +1,4 @@
-import { Toast } from 'bootstrap'
-import React, { useState } from 'react'
+import  { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
@@ -11,10 +10,11 @@ function Checkout() {
     const [address,setAddress]=useState('')
 
     const handlePlaceOrder=()=>{
-        if(address.trim()==="")return toast.warning("please enter Address")
+        if(address.trim()==="") return toast.warning("please enter Address")
         dispatch(clearCart())
         navigate('/order-summary',{state:{address}})
     }
+
   return (
      <div className="container my-5" style={{ maxWidth: "720px" }}>
       <h2 className="mb-4">Checkout</h2>

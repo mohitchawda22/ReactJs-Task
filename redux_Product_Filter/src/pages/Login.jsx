@@ -1,36 +1,8 @@
-import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { useLogin } from './useLogin'
 
 function Login() {
-    const [userData,setUserData]=useState({email:"",password:""})
-    const navigate=useNavigate()
-    const login=(e)=>{
-      e.preventDefault()
-      const exsistingUser=JSON.parse(localStorage.getItem("users"))||[]
-      const currentUser=exsistingUser.find(user=>user.email===userData.email)
-      if(!userData.email || !userData.password){
-        alert("please fill in both fields!")
-        return
-      }
-      if(!currentUser){
-        alert("User Not Found Please Register Fisrt!")
-        return
-      }
-      if(currentUser.password !==userData.password ){
-        alert("Password Does Not Match!")
-        return
-      }
-      alert("Login successfully!")
-      localStorage.setItem("isLogin",true)
-      localStorage.setItem("currentUser",JSON.stringify(currentUser))
-      navigate("/products")
-    }
-
-    const handleChange=(e)=>{
-      setUserData((prev)=>({
-        ...prev,[e.target.name]:e.target.value
-      }))
-    }
+  const { login, handleChange, userData } = useLogin()
   return (
     <div className="container my-5">
       <div className="row justify-content-center">
@@ -91,7 +63,7 @@ function Login() {
 
                 <div className="d-grid mb-4">
                   <button type="submit" className="btn btn-dark py-2">
-                      Login
+                    Login
                   </button>
                 </div>
 
