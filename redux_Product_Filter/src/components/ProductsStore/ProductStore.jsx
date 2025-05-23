@@ -14,7 +14,7 @@ function ProductStore() {
 
   return (
     <div className="container my-5">
-      <h2 className="fw-bold mb-5 text-center">🛍️ Shop</h2>
+      <h2 className="fw-bold mb-5">🛍️ Shop</h2>
       <div className="row">
         <aside className="col-md-3 mb-4">
           <Filter />

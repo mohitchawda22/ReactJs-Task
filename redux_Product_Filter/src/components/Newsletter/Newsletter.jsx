@@ -38,7 +38,7 @@ function Newsletter() {
     }
   }
   return (
-     <div className="container-fluid bg-light py-5">
+     <div className="container-fluid py-5">
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-lg-8 text-center">
@@ -79,7 +79,7 @@ function Newsletter() {
                   )}
                 </button>
               </div>
-              <div className="form-text">We respect your privacy. Unsubscribe at any time.</div>
+              <div className="">We respect your privacy. Unsubscribe at any time.</div>
             </form>
           </div>
         </div>

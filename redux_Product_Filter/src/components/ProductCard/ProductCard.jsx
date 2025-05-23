@@ -33,9 +33,6 @@ function ProductCard({ product }) {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <button className="wishlist-icon btn btn-light position-absolute top-0 end-0 m-2 p-1 rounded-circle">
-          <i className="bi bi-heart"></i>
-        </button>
 
         <div className="position-relative overflow-hidden" style={{ height: "280px" }}>
           {product.image && (

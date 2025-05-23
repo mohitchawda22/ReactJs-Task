@@ -1,13 +1,35 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 
 function Login() {
-
-    const user = {
-        name: "mohit",
+    const [userData,setUserData]=useState({email:"",password:""})
+    const navigate=useNavigate()
+    const login=(e)=>{
+      e.preventDefault()
+      const exsistingUser=JSON.parse(localStorage.getItem("users"))||[]
+      const currentUser=exsistingUser.find(user=>user.email===userData.email)
+      if(!userData.email || !userData.password){
+        alert("please fill in both fields!")
+        return
+      }
+      if(!currentUser){
+        alert("User Not Found Please Register Fisrt!")
+        return
+      }
+      if(currentUser.password !==userData.password ){
+        alert("Password Does Not Match!")
+        return
+      }
+      alert("Login successfully!")
+      localStorage.setItem("isLogin",true)
+      localStorage.setItem("currentUser",JSON.stringify(currentUser))
+      navigate("/products")
     }
-    const login=()=>{
-        localStorage.setItem("user",user)
+
+    const handleChange=(e)=>{
+      setUserData((prev)=>({
+        ...prev,[e.target.name]:e.target.value
+      }))
     }
   return (
     <div className="container my-5">
@@ -17,18 +39,18 @@ function Login() {
             <div className="card-body p-4 p-md-5">
               <h1 className="h3 mb-4 text-center">Login to Your Account</h1>
 
-              <form onSubmit={""}>
+              <form onSubmit={login}>
                 <div className="mb-3">
                   <label htmlFor="email" className="form-label">
                     Email Address
                   </label>
                   <input
                     type="email"
-                    className={`form-control `}
+                    className={`form-control`}
                     id="email"
                     name="email"
-                    // value={formData.email}
-                    // onChange={handleChange}
+                    value={userData.email}
+                    onChange={handleChange}
                     placeholder="Enter your email"
                   />
                 </div>
@@ -42,8 +64,8 @@ function Login() {
                     className={`form-control `}
                     id="password"
                     name="password"
-                    // value={formData.password}
-                    // onChange={handleChange}
+                    value={userData.password}
+                    onChange={handleChange}
                     placeholder="Enter your password"
                   />
                 </div>
@@ -55,35 +77,28 @@ function Login() {
                       className="form-check-input"
                       id="rememberMe"
                       name="rememberMe"
-                    //   checked={formData.rememberMe}
-                    //   onChange={handleChange}
+                      checked={userData.rememberMe}
+                      onChange={handleChange}
                     />
                     <label className="form-check-label" htmlFor="rememberMe">
                       Remember me
                     </label>
                   </div>
-                  <Link href="/forgot-password" className="text-decoration-none">
+                  <Link to="/forgot-password" className="text-decoration-none">
                     Forgot password?
                   </Link>
                 </div>
 
                 <div className="d-grid mb-4">
-                  <button type="submit" className="btn btn-dark py-2" disabled={""} onClick={login}>
-                    {"" ? (
-                      <>
-                        <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-                        Logging in...
-                      </>
-                    ) : (
-                      "Login"
-                    )}
+                  <button type="submit" className="btn btn-dark py-2">
+                      Login
                   </button>
                 </div>
 
                 <div className="text-center">
                   <p className="mb-0">
                     Don't have an account?{" "}
-                    <Link href="/register" className="text-decoration-none">
+                    <Link to="/register" className="text-decoration-none">
                       Register
                     </Link>
                   </p>

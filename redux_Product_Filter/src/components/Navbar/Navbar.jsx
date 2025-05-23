@@ -1,28 +1,28 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { NavLink, Link } from 'react-router-dom'
-import { ThemeContext } from '../../context/ThemeProvider'
-import { useSelector } from 'react-redux'
-import MiniCart from '../MiniCart/MiniCart'
-import ThemeSwitcher from '../ThemeSwitcher/ThemeSwitcher'
+import React, { useContext, useEffect, useState } from 'react';
+import { NavLink, Link } from 'react-router-dom';
+import { ThemeContext } from '../../context/ThemeProvider';
+import { useSelector } from 'react-redux';
+import MiniCart from '../MiniCart/MiniCart';
+import ThemeSwitcher from '../ThemeSwitcher/ThemeSwitcher';
 
 function Navbar() {
-  const { theme } = useContext(ThemeContext)
-  const cartItem = useSelector(state => state.cart.items)
-  const cartCount = cartItem.length
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [showMiniCart, setShowMiniCart] = useState(false)
+  const { theme } = useContext(ThemeContext);
+  const cartItem = useSelector(state => state.cart.items);
+  const cartCount = cartItem.length;
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showMiniCart, setShowMiniCart] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
-  const closeMenu = () => setIsMenuOpen(false)
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const closeMenu = () => setIsMenuOpen(false);
 
   return (
     <nav className={`navbar navbar-expand-lg ${theme === "dark" ? "navbar-dark bg-dark" : "navbar-light bg-light"} py-3 shadow-sm ${isScrolled ? 'sticky-top' : ''}`}>
@@ -55,12 +55,12 @@ function Navbar() {
 
         <div className={`collapse navbar-collapse ${isMenuOpen ? "show" : ""}`}>
           <ul className="navbar-nav mx-auto">
-              <Link className="nav-link" to="/" role="button">
-                Home
-              </Link>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/" onClick={closeMenu}>Home</NavLink>
+            </li>
 
             <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown">
+              <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
                 Latest
               </a>
               <ul className="dropdown-menu">
@@ -70,12 +70,11 @@ function Navbar() {
               </ul>
             </li>
 
-        
             <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown">
+              <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
                 Collection
               </a>
-              <ul className="nav-item dropdown-menu">
+              <ul className="dropdown-menu">
                 <li><NavLink className="dropdown-item" to="/products" onClick={closeMenu}>Summer Collection</NavLink></li>
                 <li><NavLink className="dropdown-item" to="/products" onClick={closeMenu}>Winter Collection</NavLink></li>
                 <li><NavLink className="dropdown-item" to="/products" onClick={closeMenu}>Special Offers</NavLink></li>
@@ -83,7 +82,7 @@ function Navbar() {
             </li>
 
             <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown">
+              <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
                 Categories
               </a>
               <ul className="dropdown-menu">
@@ -95,7 +94,7 @@ function Navbar() {
             </li>
 
             <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown">
+              <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
                 Pages
               </a>
               <ul className="dropdown-menu">
@@ -107,7 +106,7 @@ function Navbar() {
             </li>
 
             <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown">
+              <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
                 Blog
               </a>
               <ul className="dropdown-menu">
@@ -120,7 +119,7 @@ function Navbar() {
         </div>
       </div>
     </nav>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;

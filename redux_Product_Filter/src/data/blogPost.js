@@ -3,7 +3,7 @@ export const blogPosts = [
     id: 1,
     title: "Summer Fashion Trends 2025",
     excerpt: "Discover the hottest trends for the upcoming summer season.",
-    image: "https://images.pexels.com/photos/6311613/pexels-photo-6311613.jpeg?auto=compress&cs=tinysrgb&w=600",
+    image: "https://www.pxdraft.com/wrap/shopapp/assets/img/fashion/product-1.jpg",
     date: "25 MAR",
     slug: "summer-fashion-trends-2025",
   },

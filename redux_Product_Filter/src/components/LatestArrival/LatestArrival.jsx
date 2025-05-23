@@ -14,9 +14,9 @@ function LatestArrival() {
       }, [dispatch]);
     
   return (
-    <div className=" text-white py-5">
+    <div className="py-5">
       <div className="container">
-        <p className="text-center text-muted mb-2">Read Today's News.</p>
+        <p className="text-center mb-2">Read Today's News.</p>
         <h2 className="text-center display-6 mb-5">Latest Arrivals</h2>
 
         <div className="row">

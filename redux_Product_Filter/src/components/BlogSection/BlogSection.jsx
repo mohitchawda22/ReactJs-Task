@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { blogPosts } from '../../data/blogPost';
 import { Link } from 'react-router-dom';
+import { ThemeContext } from '../../context/ThemeProvider';
 
 
 function BlogSection() {
+
+  const {theme}=useContext(ThemeContext)
   return (
-    <div className="text-white py-5">
+    <div className={`py-5 ${theme==="light"?"light":"dark"}`}>
       <div className="container">
-        <h2 className="text-center display-6 mb-2 text-dark">New Blog Posts</h2>
-        <p className="text-center text-muted mb-5">Read Today's News.</p>
+        <h2 className="text-center display-6 mb-2">New Blog Posts</h2>
+        <p className="text-center mb-5">Read Today's News.</p>
 
         <div className="row">
           {blogPosts.map((post) => (
@@ -29,7 +32,7 @@ function BlogSection() {
               </div>
               <div className="mt-3">
                 <h3 className="h5 mb-2">{post.title}</h3>
-                <p className="text-muted">{post.excerpt}</p>
+                <p className="">{post.excerpt}</p>
                 <Link to={`/blog/${post.slug}`} className="text-danger text-decoration-none border border-danger p-2">
                   Read More <i className="bi bi-arrow-right"></i>
                 </Link>

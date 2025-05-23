@@ -1,14 +1,17 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 
 function TopBanner() {
-    //   const { user, logout } = useAuth()
-    const user={
-        name:"mohit"
-    }
-    // const user=JSON.parse(localStorage.getItem("user"))
-    const logout = () => {
-        localStorage.removeItem("user")
+    const navigate = useNavigate()
+    const Islogin = localStorage.getItem("Islogin") === true
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"))
+    const logout = (e) => {
+        e.preventDefault()
+        if (currentUser) {
+            localStorage.removeItem("currentUser")
+            localStorage.setItem("isLogin", false)
+            navigate("/login")
+        }
     }
     return (
         <div className="bg-black text-white py-2">
@@ -41,17 +44,23 @@ function TopBanner() {
                         </ul>
                     </div>
                     <div className="dropdown">
-                        <button className="btn btn-sm text-white dropdown-toggle p-0" type="button" data-bs-toggle="dropdown">
-                            <i className="bi bi-person-circle me-1"></i> {user.name}
-                        </button>
+                        {Islogin ? (
+                            <Link to="/login" className="text-white text-decoration-none">
+                                <i className="bi bi-person me-1"></i> Login
+                            </Link>
+                        ) : (
+                            <button className="btn btn-sm text-white dropdown-toggle p-0" type="button" data-bs-toggle="dropdown">
+                                <i className="bi bi-person-circle me-1"></i> {currentUser?.fullName || "Guest"}
+                            </button>
+                        )}
                         <ul className="dropdown-menu dropdown-menu-end">
                             <li>
-                                <Link href="/account" className="dropdown-item">
-                                    My Account
+                                <Link to="/cart" className="dropdown-item">
+                                    My Cart
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/account/orders" className="dropdown-item">
+                                <Link to="/account/orders" className="dropdown-item">
                                     My Orders
                                 </Link>
                             </li>
@@ -59,13 +68,13 @@ function TopBanner() {
                                 <hr className="dropdown-divider" />
                             </li>
                             <li>
-                                {user ? (
+                                {currentUser ? (
                                     <button className="dropdown-item" onClick={logout}>
                                         Logout
                                     </button>
                                 ) : (
-                                    <Link href="/login" className="text-white text-decoration-none">
-                                        <i className="bi bi-person me-1"></i> Login
+                                    <Link to="/login" className="text-black text-decoration-none ms-3">
+                                        <i className="bi bi-person "></i> Login
                                     </Link>
                                 )}
                             </li>

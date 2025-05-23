@@ -42,7 +42,7 @@ function HeroSlider() {
                                     <h5 className="text-white text-uppercase mb-3 d-none d-sm-block">{slide.subtitle}</h5>
                                     <h1 className="display-4 text-white mb-3 text-uppercase">{slide.title}</h1>
                                     <p className="lead text-white mb-4 d-none d-sm-block">{slide.description}</p>
-                                    <Link href={slide.buttonLink} className="btn btn-outline-light py-2 px-4">
+                                    <Link to={slide.buttonLink} className="btn btn-outline-light py-2 px-4">
                                         {slide.buttonText}
                                     </Link>
                                 </div>

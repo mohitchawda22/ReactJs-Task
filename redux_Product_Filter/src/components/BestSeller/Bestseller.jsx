@@ -12,7 +12,7 @@ function Bestseller() {
         dispatch(fetchProducts())
     },[dispatch])
   return (
-    <div className=" text-dark py-5" id='bestseller'>
+    <div className="xt-dark py-5" id='bestseller'>
       <div className="container">
         <h2 className="text-center display-6 mb-5">Browse our Bestsellers</h2>
         <div className="row">
