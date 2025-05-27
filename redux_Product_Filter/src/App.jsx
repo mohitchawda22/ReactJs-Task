@@ -11,13 +11,14 @@ const About = lazy(() => import("./pages/About"))
 const Contact = lazy(() => import("./pages/Contact"))
 const Login = lazy(() => import("./pages/Login"))
 const Register = lazy(() => import("./pages/Register"))
-const Checkout=lazy(()=>import("./pages/Checkout"))
-const OrderSummary=lazy(()=>import("./pages/OrderSummary"))
+const Checkout = lazy(() => import("./pages/Checkout"))
+const OrderSummary = lazy(() => import("./pages/OrderSummary"))
 import ThemeProvider from './context/ThemeProvider'
 import ProtectedRoute from './Routes/ProtectedRoute'
 import Loader from './components/ui/loader'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Error from './pages/Error'
 // import { Routes } from './Routes/Routes'
 
 
@@ -108,13 +109,17 @@ function App() {
           path: "/order-summary",
           element: (
             <ProtectedRoute>
-              <Suspense fallback={<Loader/>}>
+              <Suspense fallback={<Loader />}>
                 <OrderSummary />
               </Suspense>
             </ProtectedRoute>
           )
         }
       ]
+    },
+    {
+      path: "/*",
+      element: <Error />
     }
   ])
   return (

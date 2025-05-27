@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-function ExclusiceCollection() {
+function ExclusiveCollection() {
   return (
      <div className="position-relative">
       <div className="position-relative" style={{ height: "600px" }}>
@@ -27,4 +27,4 @@ function ExclusiceCollection() {
   )
 }
 
-export default ExclusiceCollection
+export default ExclusiveCollection

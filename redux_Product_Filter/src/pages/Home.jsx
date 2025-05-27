@@ -1,7 +1,7 @@
 import Bestseller from '../components/BestSeller/Bestseller'
 import BlogSection from '../components/BlogSection/BlogSection'
 import CategoryShowcase from '../components/CategoryShowcase/CategoryShowcase'
-import ExclusiceCollection from '../components/ExclusiveCollection/ExclusiceCollection'
+import ExclusiveCollection from '../components/ExclusiveCollection/ExclusiveCollection'
 import HeroSlider from '../components/HeroSlider/HeroSlider'
 import LatestArrival from '../components/LatestArrival/LatestArrival'
 import Newsletter from '../components/Newsletter/Newsletter'
@@ -12,7 +12,7 @@ function Home() {
       <HeroSlider/>
       <CategoryShowcase/>
       <LatestArrival/>
-      <ExclusiceCollection/>
+      <ExclusiveCollection/>
       <Bestseller/>
       <BlogSection/>
       <Newsletter/>
