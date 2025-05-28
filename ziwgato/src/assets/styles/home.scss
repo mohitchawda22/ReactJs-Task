@@ -1,0 +1,45 @@
+.home-container {
+  color: #111;
+  background: #fff;
+  border: 2px solid white;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, .35);
+  border-radius: 10px;
+  height: 95vh;
+  margin: 0 auto;
+  padding: 16px;
+  position: relative;
+}
+
+.home-header {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  margin-bottom: 20px;
+
+  .home-header-title {
+    text-align: center;
+
+    h2 {
+      margin: 0;
+      font-weight: 700;
+      font-size: 20px;
+    }
+
+    p {
+      font-size: 13px;
+      margin: 2px 0;
+      color: #666;
+    }
+  }
+
+  .lang-toggle {
+    .lang-btn {
+      font-size: 20px;
+      border: 1px solid #ddd;
+      background: none;
+      border-radius: 8px;
+      padding: 6px;
+      cursor: pointer;
+    }
+  }
+}
