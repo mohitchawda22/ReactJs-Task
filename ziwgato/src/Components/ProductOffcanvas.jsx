@@ -1,49 +1,102 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { closeOffcanvas } from "../redux/actions/offcanvasActions";
 import "../assets/styles/productCard.scss";
+import { addToCart } from "../redux/constants/cartActionTypes";
 
-function ProductOffcanvas() {
-    const dispatch = useDispatch();
-    const { open, product } = useSelector(state => state.offcanvas);
+const ProductOffcanvas = () => {
+  const dispatch = useDispatch();
+  const { open, product } = useSelector((state) => state.offcanvas);
 
-    if (!open || !product) return null;
+  const [selectedVariant, setSelectedVariant] = useState(null);
+  const [selectedExtras, setSelectedExtras] = useState([]);
+  const [quantity, setQuantity] = useState(1);
 
-    return (
-        <div className="custom-offcanvas-backdrop" onClick={() => dispatch(closeOffcanvas())}>
-            <div
-                className="custom-offcanvas"
-                onClick={e => e.stopPropagation()}
-            >
-                <div className="custom-offcanvas-header">
-                    <h5>{product.name}</h5>
-                    <button
-                        type="button"
-                        className="custom-offcanvas-close"
-                        onClick={() => dispatch(closeOffcanvas())}
-                        aria-label="Close"
-                    >×</button>
-                </div>
-                <div className="custom-offcanvas-body">
-                    <p>{product.description}</p>
-                    <p><strong>Price: </strong>£{product.price.toFixed(2)}</p>
-                    {product.category && (
-                        <p><strong>Category: </strong>{product.category}</p>
-                    )}
-                    {product.rating && (
-                        <p><strong>Rating: </strong>{product.rating}</p>
-                    )}
-                    {product.image && (
-                        <img
-                            src={product.image}
-                            alt={product.name}
-                            style={{ width: "100%", borderRadius: "12px", marginTop: "12px" }}
-                        />
-                    )}
-                </div>
-            </div>
-        </div>
+  if (!open || !product) return null;
+
+  const handleExtraToggle = (extra) => {
+    setSelectedExtras((prev) =>
+      prev.includes(extra)
+        ? prev.filter((e) => e !== extra)
+        : [...prev, extra]
     );
-}
+  };
+
+  const getTotalPrice = () => {
+    const base = selectedVariant?.price || product.price || 0;
+    const extrasTotal = selectedExtras.reduce((acc, extra) => acc + extra.price, 0);
+    return ((base + extrasTotal) * quantity).toFixed(2);
+  };
+
+  const handleAddToOrder = () => {
+    if (!selectedVariant) return alert("Please select a size option!");
+
+    const cartItem = {
+      ...product,
+      variant: selectedVariant,
+      extras: selectedExtras,
+      quantity,
+      totalPrice: getTotalPrice(),
+    };
+
+    dispatch(addToCart(cartItem));
+    dispatch(closeOffcanvas());
+  };
+
+  return (
+    <div className="custom-offcanvas-backdrop" onClick={() => dispatch(closeOffcanvas())}>
+      <div className="custom-offcanvas" onClick={(e) => e.stopPropagation()}>
+        <div className="custom-offcanvas-header">
+          <h5>{product.name}</h5>
+          <button className="custom-offcanvas-close" onClick={() => dispatch(closeOffcanvas())}>
+            x
+          </button>
+        </div>
+
+        <div className="custom-offcanvas-body">
+          <div className="variant-section">
+            <h6>Size</h6>
+            {product.variants?.map((variant) => (
+              <div
+                key={variant.name}
+                className={`variant-option ${selectedVariant === variant ? "active" : ""}`}
+                onClick={() => setSelectedVariant(variant)}
+              >
+                <span>{variant.name}</span>
+                <span>£{variant.price.toFixed(2)}</span>
+              </div>
+            ))}
+          </div>
+
+          {product.extras?.length > 0 && (
+            <div className="extras-section">
+              <h6>Select Options</h6>
+              {product.extras.map((extra) => (
+                <label key={extra.name} className="extra-option">
+                  <input
+                    type="checkbox"
+                    checked={selectedExtras.includes(extra)}
+                    onChange={() => handleExtraToggle(extra)}
+                  />
+                  {extra.name} (+ £{extra.price.toFixed(2)})
+                </label>
+              ))}
+            </div>
+          )}
+
+          <div className="quantity-section">
+            <button disabled={quantity <= 1} onClick={() => setQuantity(quantity - 1)}>−</button>
+            <span>{quantity}</span>
+            <button onClick={() => setQuantity(quantity + 1)}>+</button>
+          </div>
+
+          <button className="add-to-order-btn" onClick={handleAddToOrder}>
+            ADD TO ORDER (£{getTotalPrice()})
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default ProductOffcanvas;
