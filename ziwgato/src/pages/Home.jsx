@@ -2,6 +2,7 @@ import React from 'react'
 import CategoryTab from '../Components/CategoryTab'
 import ProductList from '../Components/ProductList'
 import "../assets/styles/home.scss"
+import ProductOffcanvas from '../Components/ProductOffcanvas';
 
 function Home() {
   return (
@@ -15,6 +16,7 @@ function Home() {
       </div>
       <CategoryTab />
       <ProductList />
+      <ProductOffcanvas/>
     </div>
   );
 }

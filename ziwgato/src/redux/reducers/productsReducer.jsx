@@ -1,6 +1,5 @@
 import { SET_CATEGORY } from "../actions/productsAction";
 
-/* eslint-disable no-case-declarations */
 export const initialState={
     selectedCategory:"Drinks"
 }

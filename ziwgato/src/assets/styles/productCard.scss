@@ -70,5 +70,58 @@
   z-index: 1055;
 }
 
+.custom-offcanvas-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.15);
+  z-index: 2000;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  transition: background 0.3s;
+}
+
+.custom-offcanvas {
+  background: #fff;
+  width: 100%;
+  max-width: 480px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.12);
+  padding: 20px;
+  min-height: 700px;
+  animation: slideUp 0.3s;
+}
+
+.custom-offcanvas-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding-bottom: 20px;
+  border-bottom: 4px solid rgb(223, 218, 218);
+
+  h5{
+    font-weight: 800;
+    font-size: 24px;
+  }
+}
+
+.custom-offcanvas-close {
+  border: none;
+  border-radius: 10px;
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1;
+  cursor: pointer;
+  color: #333;
+  background: #f1c40f;
+}
+
+.custom-offcanvas-body {
+  font-size: 1rem;
+  color: #222;
+}
+
 
 
