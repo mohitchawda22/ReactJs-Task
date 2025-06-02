@@ -6,6 +6,7 @@ import "../assets/styles/categoryTab.scss"
 
 function CategoryTab() {
   const [selectedParent, setSelectedParent] = useState(null)
+  const [selectedChild, setSelectedChild] = useState(null)
   const dispatch = useDispatch()
 
   const parentCategory = categories.categories.filter(c => c.parent === null)
@@ -27,19 +28,20 @@ function CategoryTab() {
         ))}
       </div>
 
-      {childCategory.length > 0 && (
-        <div className='sub-Category-tab'>
+      <div className='sub-Category-tab'>
+        <div>
           {childCategory.map((child) => (
             <button
               key={child.id}
-              className={`sub-tab ${selectedParent?.id === child.id ? "active" : ""}`}
-              onClick={() => dispatch(setCategory(child.name))}
+              className={`sub-tab ${selectedChild?.id === child.id ? "active" : ""}`}
+              onClick={() => { setSelectedChild(child) 
+                dispatch(setCategory(child.name))}}
             >
               {child.name}
             </button>
           ))}
         </div>
-      )}
+      </div>
     </div>
   )
 }

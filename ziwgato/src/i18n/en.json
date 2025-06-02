@@ -1,0 +1,17 @@
+{
+    "home.title": "Kings Arms Cardington",
+    "home.address.line1": "134 High Street, Kempston, Bedford,",
+    "home.address.line2": "Bedfordshire, MK42 7BN",
+    "home.language.english": "English",
+    "home.language.french": "Français",
+    "home.language.select": "Select Language",
+    "viewBasket":"View Basket",
+    "checkout.title": "Checkout",
+    "checkout.back": "Back",
+    "checkout.venue": "Kempston Hammers Sports & Social Club",
+    "checkout.address": "134 High Street, Kempston, Bedford, Bedfordshire, MK42 7BN",
+    "checkout.addNotes": "Add notes",
+    "checkout.tableNumber": "Table Number",
+    "checkout.confirmOrder": "CONFIRM ORDER",
+    "checkout.total": "{price} / {count, plural, one {# ITEM} other {# ITEMS}}"
+}

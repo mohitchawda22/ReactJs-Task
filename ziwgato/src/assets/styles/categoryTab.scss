@@ -12,13 +12,28 @@
     color: #000;
   }
 }
+.sub-Category-tab{
+  margin-top: 10px;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 8px 16px;
 
+  & > div {
+    display: flex;
+    gap: 10px;
+    width: max-content;
+  }
+}
 .sub-tab {
   margin: 8px 6px;
   font-size: 13px;
   background: none;
   border: none;
   color: #000;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 18px;
+
+  &.active{
+    border-bottom: 2px solid #f1c40f;
+  }
 }
