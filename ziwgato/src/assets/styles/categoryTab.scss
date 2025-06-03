@@ -15,15 +15,14 @@
 .sub-Category-tab{
   margin-top: 10px;
   overflow-x: auto;
-  white-space: nowrap;
   padding: 8px 16px;
 
-  & > div {
-    display: flex;
-    gap: 10px;
-    width: max-content;
-  }
 }
+.scroll {
+  display: flex;
+  gap: 10px;
+}
+
 .sub-tab {
   margin: 8px 6px;
   font-size: 13px;

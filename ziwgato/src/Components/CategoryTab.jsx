@@ -1,19 +1,29 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch } from "react-redux"
 import { setCategory } from '../redux/constants/productActionTypes'
 import categories from "../data/categories.json"
 import "../assets/styles/categoryTab.scss"
 
 function CategoryTab() {
-  const [selectedParent, setSelectedParent] = useState(null)
-  const [selectedChild, setSelectedChild] = useState(null)
   const dispatch = useDispatch()
-
   const parentCategory = categories.categories.filter(c => c.parent === null)
+  const defaultParent=parentCategory[0] ||null
+
+  const defaultChild=defaultParent ? categories.categories.find(c=>c.parent===defaultParent.id):null
+
+  const [selectedParent, setSelectedParent] = useState(defaultParent)
+  const [selectedChild, setSelectedChild] = useState(defaultChild)
+  
   const childCategory = selectedParent
     ? categories.categories.filter(c => c.parent === selectedParent.id)
     : []
 
+    useEffect(()=>{
+      if(selectedChild){
+        dispatch(setCategory(selectedChild.name))
+      }
+    },[dispatch,selectedChild])
+    
   return (
     <div>
       <div className='Category-tab'>
@@ -29,7 +39,7 @@ function CategoryTab() {
       </div>
 
       <div className='sub-Category-tab'>
-        <div>
+        <div className='scroll'>
           {childCategory.map((child) => (
             <button
               key={child.id}

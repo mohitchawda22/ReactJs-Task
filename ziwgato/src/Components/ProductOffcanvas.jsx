@@ -11,6 +11,7 @@ const ProductOffcanvas = () => {
   const [selectedVariant, setSelectedVariant] = useState(null);
   const [selectedExtras, setSelectedExtras] = useState([]);
   const [quantity, setQuantity] = useState(1);
+  const selectedCategory=useSelector(state=>state.product.selectedCategory)
 
   if (!open || !product) return null;
 
@@ -30,9 +31,11 @@ const ProductOffcanvas = () => {
 
   const handleAddToOrder = () => {
     if (!selectedVariant) return alert("Please select a size option!");
-
+    console.log(product);
+    
     const cartItem = {
       ...product,
+      category:product.category || selectedCategory,
       variant: selectedVariant,
       extras: selectedExtras,
       quantity,
@@ -55,7 +58,7 @@ const ProductOffcanvas = () => {
 
         <div className="custom-offcanvas-body">
           <div className="variant-section">
-            <h6>Size</h6>
+            <h6 className="">Size</h6>
             {product.variants?.map((variant) => (
               <div
                 key={variant.name}
@@ -77,6 +80,7 @@ const ProductOffcanvas = () => {
                     type="checkbox"
                     checked={selectedExtras.includes(extra)}
                     onChange={() => handleExtraToggle(extra)}
+                    className="checkbox"
                   />
                   {extra.name} (+ £{extra.price.toFixed(2)})
                 </label>

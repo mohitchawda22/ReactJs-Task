@@ -45,33 +45,22 @@
       "id": 9,
       "name": "Vodka",
       "parent": 1
-    },
+    },   
     {
-      "id": 10,
-      "name": "Vodka",
+      "id": 20,
+      "name": "whisky",
       "parent": 1
-    },
+    },   
     {
-      "id": 11,
-      "name": "Vodka",
+      "id": 21,
+      "name": "jin",
       "parent": 1
-    },
+    },   
     {
-      "id": 12,
-      "name": "Vodka",
+      "id": 22,
+      "name": "Rum",
       "parent": 1
-    },
-    {
-      "id": 12,
-      "name": "Vodka",
-      "parent": 1
-    },
-    {
-      "id": 12,
-      "name": "Vodka",
-      "parent": 1
-    },
-   
+    },   
     {
       "id": 13,
       "name": "Crisps",

@@ -2,7 +2,7 @@ import { FormattedMessage } from "react-intl";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-function FloatingCartButton() {
+function CartButton() {
   const navigate = useNavigate();
   const  cartItems  = useSelector(state => state.cart.items);
   const total = cartItems.reduce((sum, item) => sum + item.price, 0);
@@ -26,9 +26,9 @@ function FloatingCartButton() {
       }}
     >
       <h6 style={{fontSize:"24px",margin:"0px" ,fontWeight:"bold"}}><FormattedMessage id="viewBasket"/></h6>
-      {cartItems.length} | £{total.toFixed(2)}
+      {cartItems.length} ITEM / £{total.toFixed(2)}
     </button>
   );
 }
 
-export default FloatingCartButton;
+export default CartButton;

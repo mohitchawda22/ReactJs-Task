@@ -8,13 +8,13 @@ const ProductList = () => {
   const selectedCategoryName = useSelector(state => state.product.selectedCategory);
   const selectedCategory = Categories.categories.find(c => c.name === selectedCategoryName);
 
-  if (!selectedCategory) return <p>Please select a category to view products.</p>;
+  if (!selectedCategory) return <p className="para">Please select a category to view products.</p>;
 
   const filteredProducts = products.products.filter(
     p => p.parentId === selectedCategory.id
   );
 
-  if (filteredProducts.length === 0) return <p>No products in this category.</p>;
+  if (filteredProducts.length === 0) return <p className="para">No products in this category.</p>;
 
   return (
     <div className="App">

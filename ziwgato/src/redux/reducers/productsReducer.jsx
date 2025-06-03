@@ -11,7 +11,7 @@ export const productReducer=(state=initialState,action)=>{
                 ...state,
                 selectedCategory:action.payload
             }
-    
+            
         default:
             return state
     }

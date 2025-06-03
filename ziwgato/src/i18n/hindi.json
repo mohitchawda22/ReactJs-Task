@@ -1,0 +1,19 @@
+{
+    "home.title": "किंग्स आर्म्स कार्डिंगटन",
+    "home.address.line1": "134 हाई स्ट्रीट, केम्पस्टन, बेडफ़ोर्ड,",
+    "home.address.line2": "बेडफ़ोर्डशायर, MK42 7BN",
+    "home.language.english": "अंग्रेज़ी",
+    "home.language.french": "फ़्रेंच",
+    "home.language.hindi": "हिन्दी",
+    "home.language.german": "जर्मन",
+    "home.language.select": "भाषा चुनें",
+    "viewBasket": "बास्केट देखें",
+    "checkout.title": "चेकआउट",
+    "checkout.back": "वापस",
+    "checkout.venue": "केम्पस्टन हैमर्स स्पोर्ट्स एंड सोशल क्लब",
+    "checkout.address": "134 हाई स्ट्रीट, केम्पस्टन, बेडफ़ोर्ड, बेडफ़ोर्डशायर, MK42 7BN",
+    "checkout.addNotes": "नोट्स जोड़ें",
+    "checkout.tableNumber": "टेबल नंबर",
+    "checkout.confirmOrder": "ऑर्डर की पुष्टि करें",
+    "checkout.total": "{कीमत} / {गिनती, बहुवचन, एक {# आइटम} अन्य {# आइटम}}"
+}
