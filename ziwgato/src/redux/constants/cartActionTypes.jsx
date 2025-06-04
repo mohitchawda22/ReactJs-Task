@@ -15,3 +15,11 @@ export const increaseItem=({ id, variant, extras })=>(
 export const decreaseItem=({ id, variant, extras })=>(
     {type:DECREASE_QUANTITY,payload:{ id, variant, extras }}
 )
+
+export const sortExtra=(extras)=>{
+    if(!Array.isArray(extras)){
+        return "[]"
+    }
+    const sorted =[...extras].sort((a,b)=>a.name.localeCompare(b.name))
+    return JSON.stringify(sorted)
+}

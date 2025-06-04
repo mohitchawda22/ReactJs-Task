@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useState } from 'react'
 import CategoryTab from '../Components/CategoryTab'
 import ProductList from '../Components/ProductList'
 import "../assets/styles/home.scss"
@@ -12,27 +12,16 @@ import language from "../assets/lang.png"
 function Home({ setLocale, locale }) {
   const cartItems = useSelector(state => state.cart.items || []);
   const [langcontaineropen, setLangContainerOpen] = useState(false)
-  const dropdownRef = useRef()
-
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setLangContainerOpen(false);
-      }
-    }
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
 
   return (
     <div className='home-container'>
       <div className='home-header'>
-        <div className='lang-btn-container' ref={dropdownRef}>
+        <div className='lang-btn-container' >
           <button className='lang-btn' onClick={() => setLangContainerOpen(!langcontaineropen)}>
             <img src={language} alt="" width={24}/>
           </button>
           {langcontaineropen && (
-            <div className='lang-modal-overlay'>
+            <div className='lang-modal-overlay' onClick={()=>setLangContainerOpen(false)}>
               <div className='lang-modal'>
                 <h2>Select Your Language</h2>
                 <div className='lang-btns'>

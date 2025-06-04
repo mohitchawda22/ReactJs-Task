@@ -13,7 +13,8 @@ const ProductList = () => {
   const filteredProducts = products.products.filter(
     p => p.parentId === selectedCategory.id
   );
-
+  console.log(filteredProducts );
+  
   if (filteredProducts.length === 0) return <p className="para">No products in this category.</p>;
 
   return (

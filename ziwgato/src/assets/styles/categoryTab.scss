@@ -14,13 +14,16 @@
 }
 .sub-Category-tab{
   margin-top: 10px;
-  overflow-x: auto;
   padding: 8px 16px;
+  ::-webkit-scrollbar {
+    display: none;
+}
 
 }
 .scroll {
   display: flex;
   gap: 10px;
+  overflow-x: scroll;
 }
 
 .sub-tab {
@@ -31,6 +34,8 @@
   color: #000;
   font-weight: 700;
   font-size: 18px;
+
+
 
   &.active{
     border-bottom: 2px solid #f1c40f;

@@ -39,11 +39,11 @@
       "price": 7.5,
       "variants": [
         {
-          "name": "Half hproduct",
+          "name": "Half Pint",
           "price": 7.5
         },
         {
-          "name": "hproduct",
+          "name": "Pint",
           "price": 8.5
         }
       ],
@@ -70,11 +70,11 @@
       "price": 6.5,
       "variants": [
         {
-          "name": "Half hproduct",
+          "name": "Half Pint",
           "price": 6.5
         },
         {
-          "name": "hproduct",
+          "name": "Pint",
           "price": 7.5
         }
       ],

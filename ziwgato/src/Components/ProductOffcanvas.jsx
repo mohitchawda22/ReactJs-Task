@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { closeOffcanvas } from "../redux/actions/offcanvasActions";
 import "../assets/styles/productCard.scss";
@@ -12,6 +12,16 @@ const ProductOffcanvas = () => {
   const [selectedExtras, setSelectedExtras] = useState([]);
   const [quantity, setQuantity] = useState(1);
   const selectedCategory=useSelector(state=>state.product.selectedCategory)
+
+  useEffect(()=>{
+    if(product && product.variants && product.variants.length > 0){
+      setSelectedVariant(product.variants[0])
+    }else{
+      setSelectedVariant(null)
+    }
+    setSelectedExtras([])
+    setQuantity(1)
+  },[product])
 
   if (!open || !product) return null;
 
@@ -30,7 +40,7 @@ const ProductOffcanvas = () => {
   };
 
   const handleAddToOrder = () => {
-    if (!selectedVariant) return alert("Please select a size option!");
+    if (product.variants && product.variants.length>0 &&!selectedVariant) return alert("Please select a size option!");
     console.log(product);
     
     const cartItem = {
@@ -39,7 +49,6 @@ const ProductOffcanvas = () => {
       variant: selectedVariant,
       extras: selectedExtras,
       quantity,
-      totalPrice: getTotalPrice(),
     };
 
     dispatch(addToCart(cartItem));
@@ -57,7 +66,7 @@ const ProductOffcanvas = () => {
         </div>
 
         <div className="custom-offcanvas-body">
-          <div className="variant-section">
+          {product.variants && product.variants.length >0 && (<div className="variant-section">
             <h6 className="">Size</h6>
             {product.variants?.map((variant) => (
               <div
@@ -70,8 +79,9 @@ const ProductOffcanvas = () => {
               </div>
             ))}
           </div>
+        )}
 
-          {product.extras?.length > 0 && (
+          {product.extras && product.extras?.length > 0 && (
             <div className="extras-section">
               <h6>Select Options</h6>
               {product.extras.map((extra) => (

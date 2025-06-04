@@ -31,7 +31,13 @@ function CategoryTab() {
           <button
             key={parent.id}
             className={`button ${selectedParent?.id === parent.id ? "active" : ""}`}
-            onClick={() => setSelectedParent(parent)}
+            onClick={() => {setSelectedParent(parent)
+              const firstChildCategory=categories.categories.find(c=>c.parent===parent.id)
+              setSelectedChild(firstChildCategory)
+              if (firstChildCategory) {
+                dispatch(setCategory(firstChildCategory.name))
+              }
+            }}
           >
             {parent.name}
           </button>
