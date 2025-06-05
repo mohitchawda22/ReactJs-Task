@@ -10,8 +10,7 @@ export const initialState = {
   loading:false,
   selectedProduct:null
 };
- 
-
+  
 export const productReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_PRODUCTS:

@@ -21,5 +21,6 @@ export const sortExtra=(extras)=>{
         return "[]"
     }
     const sorted =[...extras].sort((a,b)=>a.name.localeCompare(b.name))
+    console.log(sorted);
     return JSON.stringify(sorted)
 }

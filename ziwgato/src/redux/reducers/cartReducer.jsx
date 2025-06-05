@@ -12,9 +12,10 @@ export const cartReducer = (state = initialState, action) => {
             const ExsistingItem = state.items.findIndex(item => item.id === action.payload.id &&
                 JSON.stringify(item.variant) === JSON.stringify(action.payload.variant) &&
                 sortExtra(item.extras) === sortExtra(action.payload.extras))
-
+            console.log();
+            
             if (ExsistingItem !== -1) {
-                const updatedItem = state.items.map((item, idx) => idx === ExsistingItem ? { ...item, quantity: item.quantity + action.payload.quantity } : item)
+                const updatedItem = state.items.map((item, id) => id === ExsistingItem ? { ...item, quantity: item.quantity + action.payload.quantity } : item)
                 return {
                     ...state,
                     items: updatedItem
