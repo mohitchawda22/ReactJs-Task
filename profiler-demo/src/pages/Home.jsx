@@ -1,7 +1,7 @@
 import React, { Profiler, useState } from 'react'
 
 function Home() {
-    const [counter,setCounter]=useState(0)
+    const [counter, setCounter] = useState(0)
     const onRender = (id, phase, actualTime, baseTime, startTime, commitTime) => {
         console.log("id:", id);
         console.log("phase:", phase);
@@ -11,7 +11,7 @@ function Home() {
         console.log("commitTime:", commitTime);
     }
 
-    const getCounter=()=>{
+    const getCounter = () => {
         return <p>{counter}</p>
     }
     return (
@@ -19,9 +19,13 @@ function Home() {
             <div>
                 hello
                 {getCounter()}
-                <button onClick={()=>setCounter(counter+1)}>increase</button>
-            </div>
-        </Profiler>
+                <button onClick={() => setTimeout(() => {
+                    setCounter(counter+1)
+                }, 3000)}
+                >increase
+                </button>
+        </div>
+        </Profiler >
     )
 }
 

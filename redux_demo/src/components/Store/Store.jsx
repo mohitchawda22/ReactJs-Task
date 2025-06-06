@@ -71,7 +71,7 @@ export const {addtask,deleteTask}=taskReducer.actions
 export const fetchData=()=>{
     return async(dispatch)=>{
         try {
-            const res=await fetch("https://jsonplaceholder.typicode.com/todos?_limit=3")
+            const res=await fetch("https://jsonplaceholder.typicode.com/todos?_limit=100")
             const task=await res.json()
             console.log(task);
             dispatch({type:FETCH_TASK,payload:task.map((task)=>task.title)})

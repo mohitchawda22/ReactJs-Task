@@ -1,4 +1,4 @@
-import React, { Profiler, useMemo, useState } from 'react'
+import { Profiler, useMemo, useState } from 'react'
 
 function Home2() {
     const [counter, setCounter] = useState(0)
@@ -20,7 +20,9 @@ function Home2() {
             <div>
                 hello
                 {getCounter}
-                <button onClick={() => setCounter(counter + 1)}>increase</button>
+                <button onClick={() => setTimeout(() => {
+                    setCounter(counter + 1)
+                }, 1000)}>increase</button>
             </div>
         </Profiler>
     )
