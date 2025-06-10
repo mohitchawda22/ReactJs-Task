@@ -39,6 +39,7 @@ export default function App() {
       .then(res => res.json())
       .then(data => {
         setAllTodos(data);
+        console.log("hello");
       });
   }, []);
 
